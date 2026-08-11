@@ -1,0 +1,28 @@
+# Virtual environment
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Raw market data — re-fetched by Actions cache each run
+data/raw/
+data/processed/
+data/outputs/
+data/cache/
+
+# Logs — visible in Actions UI, don't clutter repo
+logs/
+
+# Reports — deployed to GitHub Pages, not committed to main
+reports/
+
+# Keep portfolio state — this is the engine's persistent memory
+!data/paper_portfolio/
+!data/paper_portfolio/portfolio_state.json
+
+# macOS
+.DS_Store

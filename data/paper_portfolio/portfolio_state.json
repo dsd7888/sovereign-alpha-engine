@@ -1,0 +1,357 @@
+{
+  "initial_capital": 100000.0,
+  "cash": 113.30604332701618,
+  "peak_value": 100056.72588890807,
+  "holdings": {
+    "HEROMOTOCO.NS": {
+      "qty": 2,
+      "avg_cost": 5550.5,
+      "last_price": 5860.0,
+      "entry_date": "20260807"
+    },
+    "ONGC.NS": {
+      "qty": 13,
+      "avg_cost": 237.8000030517578,
+      "last_price": 239.83999633789062,
+      "entry_date": "20260807"
+    },
+    "BPCL.NS": {
+      "qty": 16,
+      "avg_cost": 323.70001220703125,
+      "last_price": 318.5,
+      "entry_date": "20260807"
+    },
+    "ITC.NS": {
+      "qty": 53,
+      "avg_cost": 285.9,
+      "last_price": 282.6499938964844,
+      "entry_date": "20260807"
+    },
+    "TCS.NS": {
+      "qty": 1,
+      "avg_cost": 2373.0,
+      "last_price": 2373.0,
+      "entry_date": "20260807"
+    },
+    "INFY.NS": {
+      "qty": 11,
+      "avg_cost": 1165.0,
+      "last_price": 1165.0,
+      "entry_date": "20260807"
+    },
+    "HDFCBANK.NS": {
+      "qty": 12,
+      "avg_cost": 734.2999877929688,
+      "last_price": 734.2999877929688,
+      "entry_date": "20260807"
+    },
+    "HCLTECH.NS": {
+      "qty": 5,
+      "avg_cost": 1335.0,
+      "last_price": 1335.0,
+      "entry_date": "20260807"
+    },
+    "JSWSTEEL.NS": {
+      "qty": 17,
+      "avg_cost": 1307.9000244140625,
+      "last_price": 1307.9000244140625,
+      "entry_date": "20260807"
+    },
+    "COALINDIA.NS": {
+      "qty": 23,
+      "avg_cost": 415.6000061035156,
+      "last_price": 411.0,
+      "entry_date": "20260807"
+    },
+    "VEDL.NS": {
+      "qty": 9,
+      "avg_cost": 275.0,
+      "last_price": 283.6499938964844,
+      "entry_date": "20260807"
+    },
+    "PNB.NS": {
+      "qty": 1,
+      "avg_cost": 114.30000305175781,
+      "last_price": 114.30000305175781,
+      "entry_date": "20260807"
+    }
+  },
+  "trade_log": [
+    {
+      "date": "20260807",
+      "ticker": "HEROMOTOCO.NS",
+      "action": "BUY",
+      "qty": 1,
+      "price": 5550.5,
+      "value": 5550.5,
+      "cost_breakdown": {
+        "brokerage": 5.5505,
+        "stt": 5.5505,
+        "exchange_tc": 0.16484985,
+        "sebi_charge": 0.00055505,
+        "stamp_duty": 0.832575,
+        "gst": 1.028862882
+      },
+      "total_cost": 13.13,
+      "cash_after": 94436.37
+    },
+    {
+      "date": "20260807",
+      "ticker": "ONGC.NS",
+      "action": "BUY",
+      "qty": 13,
+      "price": 237.8000030517578,
+      "value": 3091.4000396728516,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 3.091400039672852,
+        "exchange_tc": 0.09181458117828369,
+        "sebi_charge": 0.0003091400039672851,
+        "stamp_duty": 0.4637100059509277,
+        "gst": 0.9165822698128051
+      },
+      "total_cost": 9.56,
+      "cash_after": 91335.41
+    },
+    {
+      "date": "20260807",
+      "ticker": "BPCL.NS",
+      "action": "BUY",
+      "qty": 38,
+      "price": 323.70001220703125,
+      "value": 12300.600463867188,
+      "cost_breakdown": {
+        "brokerage": 12.300600463867188,
+        "stt": 12.300600463867188,
+        "exchange_tc": 0.36532783377685546,
+        "sebi_charge": 0.0012300600463867187,
+        "stamp_duty": 1.845090069580078,
+        "gst": 2.2800885043842776
+      },
+      "total_cost": 29.09,
+      "cash_after": 79005.71
+    },
+    {
+      "date": "20260807",
+      "ticker": "ITC.NS",
+      "action": "BUY",
+      "qty": 11,
+      "price": 285.8999938964844,
+      "value": 3144.899932861328,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 3.1448999328613283,
+        "exchange_tc": 0.09340352800598145,
+        "sebi_charge": 0.0003144899932861328,
+        "stamp_duty": 0.47173498992919916,
+        "gst": 0.9168692432398682
+      },
+      "total_cost": 9.63,
+      "cash_after": 75851.19
+    },
+    {
+      "date": "20260807",
+      "ticker": "TCS.NS",
+      "action": "BUY",
+      "qty": 1,
+      "price": 2373.0,
+      "value": 2373.0,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 2.373,
+        "exchange_tc": 0.0704781,
+        "sebi_charge": 0.0002373,
+        "stamp_duty": 0.35595,
+        "gst": 0.912728772
+      },
+      "total_cost": 8.71,
+      "cash_after": 73469.48
+    },
+    {
+      "date": "20260807",
+      "ticker": "INFY.NS",
+      "action": "BUY",
+      "qty": 11,
+      "price": 1165.0,
+      "value": 12815.0,
+      "cost_breakdown": {
+        "brokerage": 12.815,
+        "stt": 12.815,
+        "exchange_tc": 0.3806055,
+        "sebi_charge": 0.0012814999999999999,
+        "stamp_duty": 1.9222499999999998,
+        "gst": 2.3754396599999996
+      },
+      "total_cost": 30.31,
+      "cash_after": 60624.17
+    },
+    {
+      "date": "20260807",
+      "ticker": "HDFCBANK.NS",
+      "action": "BUY",
+      "qty": 12,
+      "price": 734.2999877929688,
+      "value": 8811.599853515625,
+      "cost_breakdown": {
+        "brokerage": 8.811599853515625,
+        "stt": 8.811599853515625,
+        "exchange_tc": 0.26170451564941405,
+        "sebi_charge": 0.0008811599853515625,
+        "stamp_duty": 1.3217399780273436,
+        "gst": 1.6333533952470702
+      },
+      "total_cost": 20.84,
+      "cash_after": 51791.73
+    },
+    {
+      "date": "20260807",
+      "ticker": "HCLTECH.NS",
+      "action": "BUY",
+      "qty": 5,
+      "price": 1335.0,
+      "value": 6675.0,
+      "cost_breakdown": {
+        "brokerage": 6.675,
+        "stt": 6.675,
+        "exchange_tc": 0.1982475,
+        "sebi_charge": 0.0006675,
+        "stamp_duty": 1.00125,
+        "gst": 1.2373047
+      },
+      "total_cost": 15.79,
+      "cash_after": 45100.94
+    },
+    {
+      "date": "20260807",
+      "ticker": "JSWSTEEL.NS",
+      "action": "BUY",
+      "qty": 17,
+      "price": 1307.9000244140625,
+      "value": 22234.300415039062,
+      "cost_breakdown": {
+        "brokerage": 20.0,
+        "stt": 22.234300415039062,
+        "exchange_tc": 0.6603587223266602,
+        "sebi_charge": 0.002223430041503906,
+        "stamp_duty": 3.335145062255859,
+        "gst": 3.719264787426269
+      },
+      "total_cost": 49.95,
+      "cash_after": 22816.69
+    },
+    {
+      "date": "20260807",
+      "ticker": "BPCL.NS",
+      "action": "SELL",
+      "qty": 22,
+      "price": 323.70001220703125,
+      "value": 7121.4002685546875,
+      "cost_breakdown": {
+        "brokerage": 7.121400268554687,
+        "stt": 7.121400268554687,
+        "exchange_tc": 0.21150558797607422,
+        "sebi_charge": 0.0007121400268554687,
+        "dp_charge": 20.0,
+        "gst": 4.920051239380371
+      },
+      "total_cost": 39.38,
+      "realised_pnl": -39.38,
+      "cash_after": 29898.71
+    },
+    {
+      "date": "20260807",
+      "ticker": "COALINDIA.NS",
+      "action": "BUY",
+      "qty": 23,
+      "price": 415.6000061035156,
+      "value": 9558.80014038086,
+      "cost_breakdown": {
+        "brokerage": 9.55880014038086,
+        "stt": 9.55880014038086,
+        "exchange_tc": 0.2838963641693115,
+        "sebi_charge": 0.0009558800140380859,
+        "stamp_duty": 1.4338200210571288,
+        "gst": 1.7718574292215579
+      },
+      "total_cost": 22.61,
+      "cash_after": 20317.3
+    },
+    {
+      "date": "20260807",
+      "ticker": "HEROMOTOCO.NS",
+      "action": "BUY",
+      "qty": 1,
+      "price": 5550.5,
+      "value": 5550.5,
+      "cost_breakdown": {
+        "brokerage": 5.5505,
+        "stt": 5.5505,
+        "exchange_tc": 0.16484985,
+        "sebi_charge": 0.00055505,
+        "stamp_duty": 0.832575,
+        "gst": 1.028862882
+      },
+      "total_cost": 13.13,
+      "cash_after": 14753.67
+    },
+    {
+      "date": "20260807",
+      "ticker": "VEDL.NS",
+      "action": "BUY",
+      "qty": 9,
+      "price": 275.0,
+      "value": 2475.0,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 2.475,
+        "exchange_tc": 0.0735075,
+        "sebi_charge": 0.0002475,
+        "stamp_duty": 0.37124999999999997,
+        "gst": 0.9132759
+      },
+      "total_cost": 8.83,
+      "cash_after": 12269.84
+    },
+    {
+      "date": "20260807",
+      "ticker": "ITC.NS",
+      "action": "BUY",
+      "qty": 42,
+      "price": 285.8999938964844,
+      "value": 12007.799743652344,
+      "cost_breakdown": {
+        "brokerage": 12.007799743652344,
+        "stt": 12.007799743652344,
+        "exchange_tc": 0.3566316523864746,
+        "sebi_charge": 0.0012007799743652342,
+        "stamp_duty": 1.8011699615478514,
+        "gst": 2.2258137916823726
+      },
+      "total_cost": 28.4,
+      "cash_after": 233.64
+    },
+    {
+      "date": "20260807",
+      "ticker": "PNB.NS",
+      "action": "BUY",
+      "qty": 1,
+      "price": 114.30000305175781,
+      "value": 114.30000305175781,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 0.11430000305175782,
+        "exchange_tc": 0.003394710090637207,
+        "sebi_charge": 1.143000030517578e-05,
+        "stamp_duty": 0.01714500045776367,
+        "gst": 0.9006131052163696
+      },
+      "total_cost": 6.04,
+      "cash_after": 113.31
+    }
+  ],
+  "daily_nav": {
+    "20260807": 99694.61,
+    "20260811": 100056.73
+  },
+  "last_updated": "20260811"
+}

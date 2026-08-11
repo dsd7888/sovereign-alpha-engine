@@ -1,0 +1,139 @@
+name: Sovereign Alpha Engine — Daily Run
+
+on:
+  schedule:
+    - cron: '0 12 * * 1-5'  # 12:00 UTC = 17:30 IST, Monday–Friday
+  workflow_dispatch:          # Manual trigger from GitHub UI anytime
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "engine"
+  cancel-in-progress: false  # Never cancel a running portfolio update
+
+jobs:
+  run-engine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ hashFiles('pyproject.toml') }}
+          restore-keys: pip-
+
+      - name: Cache market data (yfinance + Screener)
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/raw/ohlcv/
+            data/raw/fundamentals/
+            data/raw/vix/
+          key: market-data-${{ github.run_id }}
+          restore-keys: |
+            market-data-
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip --quiet
+          pip install -e ".[dev]" --quiet
+
+      - name: Verify data connectivity
+        run: |
+          python -c "
+          import yfinance as yf
+          data = yf.download('RELIANCE.NS', period='2d', progress=False, threads=False)
+          assert not data.empty, 'yfinance connectivity failed'
+          print(f'yfinance OK — {len(data)} rows for RELIANCE.NS')
+          "
+
+      - name: Ensure portfolio state directory exists
+        run: mkdir -p data/paper_portfolio
+
+      - name: Run engine
+        run: python run_engine.py --mode full
+        env:
+          PYTHONUNBUFFERED: "1"
+          PYTHONPATH: "."
+
+      - name: Commit portfolio state back to repo
+        run: |
+          git config user.name  "Sovereign Alpha Bot"
+          git config user.email "sovereign-alpha-bot@users.noreply.github.com"
+          git pull --rebase origin main
+          git add data/paper_portfolio/portfolio_state.json
+          git diff --cached --quiet && echo "No portfolio changes" || \
+            git commit -m "portfolio: state update $(date -u +'%Y-%m-%d')"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build GitHub Pages content
+        run: |
+          mkdir -p gh-pages-deploy
+
+          # Today's report becomes the homepage (index.html)
+          LATEST=$(ls -t reports/report_*.html 2>/dev/null | head -1)
+          if [ -z "$LATEST" ]; then
+            echo "ERROR: No report file found after engine run"
+            exit 1
+          fi
+          cp "$LATEST" gh-pages-deploy/index.html
+
+          # Also keep dated copies so you can browse history
+          cp reports/report_*.html gh-pages-deploy/ 2>/dev/null || true
+
+          # Build a simple archive index listing all past reports
+          python -c "
+          import os, re
+          files = sorted([f for f in os.listdir('gh-pages-deploy')
+                          if re.match(r'report_\d{8}\.html', f)], reverse=True)
+          rows = ''.join(
+              f'<tr><td><a href=\"{f}\">{f[7:11]}-{f[11:13]}-{f[13:15]}</a></td></tr>'
+              for f in files
+          )
+          html = f'''<!DOCTYPE html><html><head>
+          <meta charset=UTF-8>
+          <meta http-equiv=\"refresh\" content=\"0;url=index.html\">
+          <title>Sovereign Alpha Engine</title>
+          <style>body{{font-family:system-ui;background:#0f0f1a;color:#e0e0e0;padding:40px}}
+          h2{{color:#FFD700}}a{{color:#00CED1}}
+          table{{border-collapse:collapse}}td{{padding:8px 16px}}
+          tr:hover td{{background:#1a1a2e}}</style></head>
+          <body>
+          <h2>🏛️ Sovereign Alpha Engine — Report Archive</h2>
+          <p><a href=\"index.html\">→ View today's report</a></p>
+          <table>{rows}</table>
+          </body></html>'''
+          open('gh-pages-deploy/archive.html','w').write(html)
+          print(f'Archive built — {len(files)} reports')
+          "
+
+          echo "Pages content ready:"
+          ls -la gh-pages-deploy/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./gh-pages-deploy
+          publish_branch: gh-pages
+          keep_files: true
+          commit_message: "report: $(date -u +'%Y-%m-%d')"

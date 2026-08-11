@@ -1,0 +1,49 @@
+[project]
+name = "sovereign-alpha-engine"
+version = "0.1.0"
+description = "Automated Indian equity paper-trading research engine (Nifty 50, yfinance-only data)."
+requires-python = ">=3.11"
+dependencies = [
+    "yfinance>=0.2.40",
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "requests>=2.31.0",
+    "beautifulsoup4>=4.12.0",
+    "lxml>=5.1.0",
+    "pyarrow>=15.0.0",
+    "scipy>=1.12.0",
+    "scikit-learn>=1.4.0",
+    "matplotlib>=3.8.0",
+    "loguru>=0.7.2",
+    "tenacity>=8.2.0",
+    "tqdm>=4.66.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.1.0",
+    "pytest-mock>=3.14.0",
+    "ruff>=0.3.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["sovereign_alpha", "config"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+# DTZ005: this is a single-machine, single-timezone (IST) daily cron job —
+#   timezone-aware datetimes everywhere would be pure ceremony here.
+# BLE001: several boundaries (yfinance internals, Screener.in HTML scraping)
+#   have a genuinely unpredictable exception surface; those catches are
+#   deliberate and always logged, never silently swallowed.
+ignore = ["DTZ005", "BLE001"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
