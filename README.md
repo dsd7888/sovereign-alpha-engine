@@ -11,10 +11,10 @@ Automated quantitative paper trading engine for Indian equities.
 
 ## 📊 Daily Report
 
-**[→ View today's report](https://dhruvdakhara.github.io/sovereign-alpha-engine/)**
+**[→ View today's report](https://dsd7888.github.io/sovereign-alpha-engine/)**
 
 Updated automatically every weekday evening.
-[Report archive](https://dhruvdakhara.github.io/sovereign-alpha-engine/archive.html)
+[Report archive](https://dsd7888.github.io/sovereign-alpha-engine/archive.html)
 
 ## Manual Run
 
