@@ -2,7 +2,7 @@ name: Sovereign Alpha Engine — Daily Run
 
 on:
   schedule:
-    - cron: '0 12 * * 1-5'  # 12:00 UTC = 17:30 IST, Monday–Friday
+    - cron: '3 12 * * 1-5'  # 12:03 UTC ≈ 17:33 IST — off the hour to dodge GitHub's top-of-hour queue congestion, Monday–Friday
   workflow_dispatch:          # Manual trigger from GitHub UI anytime
 
 permissions:
