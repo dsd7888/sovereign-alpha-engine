@@ -85,9 +85,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Checkout existing gh-pages content
+        uses: actions/checkout@v4
+        continue-on-error: true  # gh-pages branch won't exist yet on the very first deploy
+        with:
+          ref: gh-pages
+          path: gh-pages-deploy
+
       - name: Build GitHub Pages content
         run: |
           mkdir -p gh-pages-deploy
+          rm -rf gh-pages-deploy/.git  # drop checkout's git metadata — this dir is just deploy staging
 
           # Today's report becomes the homepage (index.html)
           LATEST=$(ls -t reports/report_*.html 2>/dev/null | head -1)

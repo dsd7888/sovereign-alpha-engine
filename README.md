@@ -7,7 +7,7 @@ Automated quantitative paper trading engine for Indian equities.
 | **Universe** | Nifty 50 + Midcap 100 (115 tickers) |
 | **Capital** | ₹1,00,000 virtual |
 | **Cost model** | Groww equity delivery (2025–26 rates) |
-| **Runs** | Every weekday at 17:30 IST via GitHub Actions |
+| **Runs** | Every weekday at 17:33 IST via GitHub Actions |
 
 ## 📊 Daily Report
 
@@ -18,7 +18,7 @@ Updated automatically every weekday evening.
 
 ## Manual Run
 
-Trigger anytime without waiting for 17:30:
+Trigger anytime without waiting for 17:33:
 **Actions → Sovereign Alpha Engine — Daily Run → Run workflow**
 
 ## Architecture
