@@ -77,10 +77,10 @@ jobs:
         run: |
           git config user.name  "Sovereign Alpha Bot"
           git config user.email "sovereign-alpha-bot@users.noreply.github.com"
-          git pull --rebase origin main
           git add data/paper_portfolio/portfolio_state.json
           git diff --cached --quiet && echo "No portfolio changes" || \
             git commit -m "portfolio: state update $(date -u +'%Y-%m-%d')"
+          git pull --rebase origin main
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
