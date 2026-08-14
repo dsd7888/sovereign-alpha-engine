@@ -81,7 +81,6 @@ MAX_STOCKS_IN_PORTFOLIO = 12
 MIN_USHS_THRESHOLD = 60.0
 MIN_POSITION_VALUE_INR = 2_000.0
 REBALANCE_SELL_BAND = 0.05   # trim if overweight by more than this
-REBALANCE_BUY_BAND = 0.03    # top up if underweight by more than this
 
 # ── Circuit breaker thresholds ────────────────────────────────────────────
 DRAWDOWN_REDUCE_50 = 0.08

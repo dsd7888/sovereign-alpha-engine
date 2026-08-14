@@ -61,6 +61,15 @@ jobs:
           assert not data.empty, 'yfinance connectivity failed'
           print(f'yfinance OK — {len(data)} rows for RELIANCE.NS')
           "
+          python -c "
+          import requests
+          from config import settings
+          from sovereign_alpha.ingestion.data_harmonizer import SCREENER_HEADERS
+          url = f'{settings.SCREENER_BASE_URL}RELIANCE/consolidated/'
+          resp = requests.get(url, headers=SCREENER_HEADERS, timeout=settings.SCREENER_TIMEOUT_SEC)
+          assert resp.status_code == 200, f'Screener.in connectivity failed: HTTP {resp.status_code}'
+          print('Screener.in OK')
+          "
 
       - name: Ensure portfolio state directory exists
         run: mkdir -p data/paper_portfolio
@@ -78,8 +87,24 @@ jobs:
           git add data/paper_portfolio/portfolio_state.json
           git diff --cached --quiet && echo "No portfolio changes" || \
             git commit -m "portfolio: state update $(date -u +'%Y-%m-%d')"
-          git pull --rebase origin main
-          git push origin main
+
+          # A manual push landing on main between our pull and push (e.g.
+          # someone fixing the workflow itself) would otherwise fail this
+          # step outright and skip today's Pages deploy even though the
+          # engine ran fine. Retry the rebase+push a few times before
+          # giving up for real — and if every attempt fails, exit non-zero
+          # rather than silently continuing with an unpushed commit.
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin main; then
+              break
+            fi
+            if [ "$attempt" = "5" ]; then
+              echo "::error::Failed to push portfolio state after 5 attempts"
+              exit 1
+            fi
+            echo "Push attempt $attempt failed — retrying in 5s..."
+            sleep 5
+          done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

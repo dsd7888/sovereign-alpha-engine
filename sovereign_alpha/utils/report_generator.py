@@ -161,7 +161,7 @@ def generate_daily_report(
 </head>
 <body>
 <h1>Sovereign Alpha Engine</h1>
-<div class="subtitle">Daily Report &middot; {datetime.now().strftime("%A, %d %B %Y %H:%M IST")} &middot; Universe: Nifty 50 Pilot</div>
+<div class="subtitle">Daily Report &middot; {datetime.now().strftime("%A, %d %B %Y %H:%M IST")} &middot; Universe: Nifty 50 + Midcap 100 ({len(scored_df)} tickers)</div>
 
 <div class="grid">
   <div class="card">
