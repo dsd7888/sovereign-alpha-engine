@@ -6,25 +6,25 @@
     "HEROMOTOCO.NS": {
       "qty": 2,
       "avg_cost": 5550.5,
-      "last_price": 5895.0,
+      "last_price": 5850.0,
       "entry_date": "20260807"
     },
     "ONGC.NS": {
       "qty": 13,
       "avg_cost": 237.8000030517578,
-      "last_price": 239.0500030517578,
+      "last_price": 239.89999389648438,
       "entry_date": "20260807"
     },
     "BPCL.NS": {
       "qty": 16,
       "avg_cost": 323.70001220703125,
-      "last_price": 317.0,
+      "last_price": 315.0,
       "entry_date": "20260807"
     },
     "ITC.NS": {
       "qty": 53,
       "avg_cost": 285.9,
-      "last_price": 276.1499938964844,
+      "last_price": 278.5,
       "entry_date": "20260807"
     },
     "TCS.NS": {
@@ -60,13 +60,13 @@
     "COALINDIA.NS": {
       "qty": 23,
       "avg_cost": 415.6000061035156,
-      "last_price": 409.29998779296875,
+      "last_price": 410.5,
       "entry_date": "20260807"
     },
     "VEDL.NS": {
       "qty": 9,
       "avg_cost": 275.0,
-      "last_price": 275.79998779296875,
+      "last_price": 271.1000061035156,
       "entry_date": "20260807"
     },
     "PNB.NS": {
@@ -353,7 +353,8 @@
     "20260807": 99694.61,
     "20260811": 100056.73,
     "20260812": 99816.96,
-    "20260813": 99638.21
+    "20260813": 99638.21,
+    "20260814": 99637.11
   },
-  "last_updated": "20260813"
+  "last_updated": "20260814"
 }
