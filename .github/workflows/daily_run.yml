@@ -48,17 +48,6 @@ jobs:
           key: pip-${{ hashFiles('pyproject.toml') }}
           restore-keys: pip-
 
-      - name: Cache market data (yfinance + Screener)
-        uses: actions/cache@v4
-        with:
-          path: |
-            data/raw/ohlcv/
-            data/raw/fundamentals/
-            data/raw/vix/
-          key: market-data-${{ github.run_id }}
-          restore-keys: |
-            market-data-
-
       - name: Install dependencies
         run: |
           pip install --upgrade pip --quiet
