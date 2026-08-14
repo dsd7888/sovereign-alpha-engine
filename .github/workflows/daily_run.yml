@@ -18,6 +18,15 @@ jobs:
   run-engine:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      # GitHub-hosted runners default to UTC. The engine's date/time code
+      # (today_str, is_market_day, report + log timestamps) calls naive
+      # datetime.now() and assumes it's already IST — true on a local Mac,
+      # false here unless pinned. Without this, trade dates, the "today is
+      # a weekend" check, and every "…IST" label in the report/logs are
+      # silently off by 5:30h (and could land on the wrong calendar day
+      # near midnight IST).
+      TZ: Asia/Kolkata
 
     steps:
 
