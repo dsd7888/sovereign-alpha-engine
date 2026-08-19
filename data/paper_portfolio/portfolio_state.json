@@ -1,30 +1,30 @@
 {
   "initial_capital": 100000.0,
-  "cash": 113.30604332701618,
+  "cash": 73.88126235935965,
   "peak_value": 100056.72588890807,
   "holdings": {
     "HEROMOTOCO.NS": {
       "qty": 2,
       "avg_cost": 5550.5,
-      "last_price": 5745.0,
+      "last_price": 5745.5,
       "entry_date": "20260807"
     },
     "ONGC.NS": {
       "qty": 13,
       "avg_cost": 237.8000030517578,
-      "last_price": 238.49000549316406,
+      "last_price": 239.5,
       "entry_date": "20260807"
     },
     "BPCL.NS": {
       "qty": 16,
       "avg_cost": 323.70001220703125,
-      "last_price": 316.6499938964844,
+      "last_price": 310.29998779296875,
       "entry_date": "20260807"
     },
     "ITC.NS": {
-      "qty": 53,
+      "qty": 35,
       "avg_cost": 285.9,
-      "last_price": 273.04998779296875,
+      "last_price": 270.0,
       "entry_date": "20260807"
     },
     "TCS.NS": {
@@ -34,9 +34,9 @@
       "entry_date": "20260807"
     },
     "INFY.NS": {
-      "qty": 11,
+      "qty": 7,
       "avg_cost": 1165.0,
-      "last_price": 1165.0,
+      "last_price": 1115.0,
       "entry_date": "20260807"
     },
     "HDFCBANK.NS": {
@@ -60,13 +60,13 @@
     "COALINDIA.NS": {
       "qty": 23,
       "avg_cost": 415.6000061035156,
-      "last_price": 408.45001220703125,
+      "last_price": 406.8999938964844,
       "entry_date": "20260807"
     },
     "VEDL.NS": {
       "qty": 9,
       "avg_cost": 275.0,
-      "last_price": 269.70001220703125,
+      "last_price": 264.0,
       "entry_date": "20260807"
     },
     "PNB.NS": {
@@ -74,6 +74,24 @@
       "avg_cost": 114.30000305175781,
       "last_price": 114.30000305175781,
       "entry_date": "20260807"
+    },
+    "PETRONET.NS": {
+      "qty": 14,
+      "avg_cost": 286.25,
+      "last_price": 286.25,
+      "entry_date": "20260819"
+    },
+    "INDUSTOWER.NS": {
+      "qty": 9,
+      "avg_cost": 372.3999938964844,
+      "last_price": 372.3999938964844,
+      "entry_date": "20260819"
+    },
+    "COLPAL.NS": {
+      "qty": 1,
+      "avg_cost": 1903.0,
+      "last_price": 1903.0,
+      "entry_date": "20260819"
     }
   },
   "trade_log": [
@@ -347,6 +365,98 @@
       },
       "total_cost": 6.04,
       "cash_after": 113.31
+    },
+    {
+      "date": "20260819",
+      "ticker": "ITC.NS",
+      "action": "SELL",
+      "qty": 18,
+      "price": 270.0,
+      "value": 4860.0,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 4.86,
+        "exchange_tc": 0.144342,
+        "sebi_charge": 0.000486,
+        "dp_charge": 20.0,
+        "gst": 4.52606904
+      },
+      "total_cost": 34.53,
+      "realised_pnl": -320.73,
+      "cash_after": 4938.78
+    },
+    {
+      "date": "20260819",
+      "ticker": "INFY.NS",
+      "action": "SELL",
+      "qty": 4,
+      "price": 1115.0,
+      "value": 4460.0,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 4.46,
+        "exchange_tc": 0.132462,
+        "sebi_charge": 0.000446,
+        "dp_charge": 20.0,
+        "gst": 4.52392344
+      },
+      "total_cost": 34.12,
+      "realised_pnl": -234.12,
+      "cash_after": 9364.66
+    },
+    {
+      "date": "20260819",
+      "ticker": "PETRONET.NS",
+      "action": "BUY",
+      "qty": 14,
+      "price": 286.25,
+      "value": 4007.5,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 4.0075,
+        "exchange_tc": 0.11902275,
+        "sebi_charge": 0.00040074999999999996,
+        "stamp_duty": 0.6011249999999999,
+        "gst": 0.9214962299999999
+      },
+      "total_cost": 10.65,
+      "cash_after": 5346.51
+    },
+    {
+      "date": "20260819",
+      "ticker": "INDUSTOWER.NS",
+      "action": "BUY",
+      "qty": 9,
+      "price": 372.3999938964844,
+      "value": 3351.5999450683594,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 3.3515999450683593,
+        "exchange_tc": 0.09954251836853027,
+        "sebi_charge": 0.0003351599945068359,
+        "stamp_duty": 0.5027399917602539,
+        "gst": 0.9179779821053466
+      },
+      "total_cost": 9.87,
+      "cash_after": 1985.04
+    },
+    {
+      "date": "20260819",
+      "ticker": "COLPAL.NS",
+      "action": "BUY",
+      "qty": 1,
+      "price": 1903.0,
+      "value": 1903.0,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 1.903,
+        "exchange_tc": 0.0565191,
+        "sebi_charge": 0.0001903,
+        "stamp_duty": 0.28545,
+        "gst": 0.910207692
+      },
+      "total_cost": 8.16,
+      "cash_after": 73.88
     }
   ],
   "daily_nav": {
@@ -356,7 +466,8 @@
     "20260813": 99638.21,
     "20260814": 99637.11,
     "20260817": 99536.31,
-    "20260818": 99086.58
+    "20260818": 99086.58,
+    "20260819": 98103.18
   },
-  "last_updated": "20260818"
+  "last_updated": "20260819"
 }
