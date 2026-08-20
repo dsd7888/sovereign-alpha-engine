@@ -95,15 +95,22 @@ class PortfolioOptimizer:
 
     # ── Returns & covariance ────────────────────────────────────────────────
 
-    def load_returns(self, tickers: list[str]) -> pd.DataFrame:
+    def load_returns(self, tickers: list[str], ohlcv: pd.DataFrame | None = None) -> pd.DataFrame:
         """
         Daily log-returns matrix (trading_days x n_tickers). Drops tickers
         with fewer than ``settings.MIN_OHLCV_HISTORY_DAYS`` observations or
         more than 10% missing data — a thinly-traded/newly-listed stock
         would otherwise inject a mostly-fabricated (forward-filled) return
         series into the covariance estimate.
+
+        ``ohlcv``, if given, is used directly instead of fetching through
+        ``DataIngestor``. The backtest engine passes an already time-sliced,
+        point-in-time-safe frame this way — ``DataIngestor``'s on-disk cache
+        is keyed by ticker and freshness only, not by date range, so calling
+        it repeatedly with a shifting historical end-date (as a day-by-day
+        backtest loop would) is not safe to rely on.
         """
-        ohlcv = self.ingestor.fetch_ohlcv(tickers)
+        ohlcv = ohlcv if ohlcv is not None else self.ingestor.fetch_ohlcv(tickers)
         series_by_ticker: dict[str, pd.Series] = {}
 
         for ticker in tickers:

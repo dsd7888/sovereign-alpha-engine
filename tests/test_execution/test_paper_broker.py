@@ -23,6 +23,60 @@ class TestInitialisation:
         assert "A.NS" in b2.state["holdings"]
 
 
+class TestBacktestMode:
+    def test_persist_false_never_touches_disk(self, tmp_path):
+        path = tmp_path / "should_not_be_created.json"
+        b = PaperBroker(state_path=path, persist=False)
+        b.buy("A.NS", qty=1, price=100.0)
+        assert not path.exists()
+
+    def test_persist_false_starts_fresh_regardless_of_existing_file(self, tmp_path):
+        path = tmp_path / "state.json"
+        seeded = PaperBroker(state_path=path)
+        seeded.buy("A.NS", qty=1, price=100.0)  # writes real state to disk
+
+        b = PaperBroker(state_path=path, persist=False)
+        assert b.state["holdings"] == {}  # ignores what's on disk
+
+    def test_custom_initial_capital(self):
+        b = PaperBroker(persist=False, initial_capital=50_000.0)
+        assert b.state["cash"] == 50_000.0
+        assert b.state["initial_capital"] == 50_000.0
+
+    def test_clock_controls_trade_and_nav_dates(self):
+        # clock is read multiple times per call (trade record + _save_state),
+        # so it must be a stable "what day is it" read, not a one-shot value —
+        # a mutable holder the test advances between logical days, exactly
+        # like a backtest loop would.
+        day = {"value": "20200101"}
+        b = PaperBroker(persist=False, clock=lambda: day["value"])
+
+        trade = b.buy("A.NS", qty=1, price=100.0)
+        assert trade["date"] == "20200101"
+
+        day["value"] = "20200102"
+        b.update_prices({"A.NS": 105.0})
+        assert "20200102" in b.state["daily_nav"]
+
+        day["value"] = "20200103"
+        trade2 = b.sell("A.NS", qty=1, price=105.0)
+        assert trade2["date"] == "20200103"
+
+    def test_moving_clock_across_days_keeps_every_nav_point(self):
+        """
+        The bug this clock exists to prevent: with the real wall clock,
+        every simulated day's NAV would be stamped with today's actual
+        date and overwrite the same daily_nav key, collapsing a multi-day
+        backtest into a single point.
+        """
+        day = {"value": "20200101"}
+        b = PaperBroker(persist=False, clock=lambda: day["value"])
+        for d, price in [("20200101", 100.0), ("20200102", 101.0), ("20200103", 99.0)]:
+            day["value"] = d
+            b.update_prices({})
+        assert set(b.state["daily_nav"].keys()) == {"20200101", "20200102", "20200103"}
+
+
 class TestBuy:
     def test_buy_deducts_cash_including_costs(self, broker):
         cash_before = broker.state["cash"]

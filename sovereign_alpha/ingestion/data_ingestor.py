@@ -56,6 +56,7 @@ class DataIngestor:
         start: str | None = None,
         end: str | None = None,
         interval: str = "1d",
+        use_cache: bool = True,
     ) -> pd.DataFrame:
         """
         Fetch OHLCV for ``tickers``, one flat DataFrame with a ``ticker``
@@ -66,6 +67,15 @@ class DataIngestor:
         Tickers that fail to fetch (delisted, network error after retries,
         no rows) are skipped with a warning rather than aborting the whole
         batch — a single bad symbol should never take down a 50-stock run.
+
+        The cache is keyed by ticker and freshness only, NOT by the
+        requested ``(start, end)`` range — safe in production, where every
+        call uses the same implicit "today minus LOOKBACK_YEARS" window, so
+        a cache hit is always the right data. It is NOT safe for a caller
+        that requests genuinely different date ranges across calls (e.g. a
+        backtest run repeated with different ``--years``/dates within the
+        cache TTL) — a hit would silently return the *previous* call's
+        window. Pass ``use_cache=False`` in that situation.
         """
         tickers = clean_ticker_list(tickers)
         if not tickers:
@@ -82,7 +92,7 @@ class DataIngestor:
         for ticker in tickers:
             cache_path = self._ohlcv_cache_path(ticker)
 
-            if is_cache_valid(cache_path, settings.OHLCV_CACHE_HOURS):
+            if use_cache and is_cache_valid(cache_path, settings.OHLCV_CACHE_HOURS):
                 logger.debug(f"[CACHE HIT] {ticker} OHLCV")
                 df = pd.read_parquet(cache_path)
             else:

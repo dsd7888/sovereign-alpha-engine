@@ -1,0 +1,136 @@
+name: Sovereign Alpha Engine — Backtest & Walk-Forward Validation
+
+on:
+  schedule:
+    # Weekly, not daily — the long-history data this validates barely moves
+    # day to day, and a full-universe run is expensive; a daily cron here
+    # would mostly burn CI minutes re-deriving the same conclusion.
+    - cron: '17 3 * * 0'  # Sunday, off the hour, distinct from the daily engine's schedule
+  workflow_dispatch:
+    inputs:
+      years:
+        description: 'Lookback window in years'
+        required: false
+        default: '10'
+      rebalance_frequency_days:
+        description: 'Trading days between full re-optimisations'
+        required: false
+        default: '5'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "backtest"
+  cancel-in-progress: false
+
+jobs:
+  run-backtest:
+    runs-on: ubuntu-latest
+    # A full 10-year, 115-ticker, both-mode walk-forward run is a genuine
+    # batch job (Monte Carlo optimisation runs once per rebalance day) —
+    # generous headroom rather than tuning this tightly against one
+    # measured runtime.
+    timeout-minutes: 340
+    env:
+      TZ: Asia/Kolkata
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ hashFiles('pyproject.toml') }}
+          restore-keys: pip-
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip --quiet
+          pip install -e ".[dev]" --quiet
+
+      - name: Verify data connectivity
+        run: |
+          python -c "
+          import yfinance as yf
+          data = yf.download('RELIANCE.NS', period='2d', progress=False, threads=False)
+          assert not data.empty, 'yfinance connectivity failed'
+          print(f'yfinance OK — {len(data)} rows for RELIANCE.NS')
+          "
+        # No Screener.in check here — unlike the daily engine, the backtest
+        # never scrapes Screener (point_in_time.py reconstructs fundamentals
+        # from yfinance statements only; promoter pledge has no historical
+        # source at all, see that module's docstring).
+
+      - name: Run backtest (both modes)
+        run: |
+          python run_backtest.py --mode both \
+            --years "${{ github.event.inputs.years || '10' }}" \
+            --rebalance-frequency-days "${{ github.event.inputs.rebalance_frequency_days || '5' }}"
+        env:
+          PYTHONUNBUFFERED: "1"
+          PYTHONPATH: "."
+
+      - name: Commit backtest history back to repo
+        run: |
+          git config user.name  "Sovereign Alpha Bot"
+          git config user.email "sovereign-alpha-bot@users.noreply.github.com"
+          git add data/backtest_history/
+          git diff --cached --quiet && echo "No new backtest results" || \
+            git commit -m "backtest: results $(date -u +'%Y-%m-%d')"
+
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin main; then
+              break
+            fi
+            if [ "$attempt" = "5" ]; then
+              echo "::error::Failed to push backtest history after 5 attempts"
+              exit 1
+            fi
+            echo "Push attempt $attempt failed — retrying in 5s..."
+            sleep 5
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout existing gh-pages content
+        uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages-deploy
+
+      - name: Publish backtest reports to GitHub Pages
+        run: |
+          mkdir -p gh-pages-deploy/backtest
+          rm -rf gh-pages-deploy/.git
+
+          LATEST_TECHNICAL=$(ls -t data/outputs/backtests/backtest_technical_*.html 2>/dev/null | head -1)
+          LATEST_FULL=$(ls -t data/outputs/backtests/backtest_full_*.html 2>/dev/null | head -1)
+          [ -n "$LATEST_TECHNICAL" ] && cp "$LATEST_TECHNICAL" gh-pages-deploy/backtest/technical.html
+          [ -n "$LATEST_FULL" ] && cp "$LATEST_FULL" gh-pages-deploy/backtest/full.html
+          cp data/outputs/backtests/*.html gh-pages-deploy/backtest/ 2>/dev/null || true
+
+          echo "Backtest pages ready:"
+          ls -la gh-pages-deploy/backtest/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./gh-pages-deploy
+          publish_branch: gh-pages
+          keep_files: true
+          commit_message: "backtest report: $(date -u +'%Y-%m-%d')"

@@ -17,6 +17,7 @@ from sovereign_alpha.utils.logger import logger
 _SCORE_COLUMNS = [
     "pe_score", "pb_score", "roe_score", "fcf_yield_score", "debt_equity_score",
     "promoter_pledge_score", "altman_z_score", "beneish_m_score", "sentiment_score",
+    "momentum_score", "low_vol_score",
 ]
 
 
@@ -118,13 +119,33 @@ class FundamentalScorer:
 
         return m.map(_to_score)
 
+    def score_momentum(self, df: pd.DataFrame) -> pd.Series:
+        """
+        12-1 momentum (cumulative log-return, t-252 to t-21) — higher is
+        better. Point-in-time-safe (price-only), unlike every fundamentals
+        factor above. Missing/insufficient history -> neutral (50), same
+        convention as the rest of USHS.
+        """
+        return self._percentile_score(_col(df, "momentum_12_1"), higher_is_better=True)
+
+    def score_low_vol(self, df: pd.DataFrame) -> pd.Series:
+        """
+        Trailing 6-month annualised realised volatility — lower is better
+        (the low-volatility anomaly: Ang, Hodrick, Xing & Zhang 2006).
+        Point-in-time-safe, same as momentum.
+        """
+        return self._percentile_score(_col(df, "low_vol_6m"), higher_is_better=False)
+
     # ── Master USHS ─────────────────────────────────────────────────────────
 
-    def compute_ushs(self, df: pd.DataFrame) -> pd.DataFrame:
+    def compute_ushs(self, df: pd.DataFrame, save_output: bool = True) -> pd.DataFrame:
         """
         Adds all ``*_score`` columns plus ``ushs``, ``ushs_rank``,
         ``ushs_grade`` to a copy of ``df``. Saves a ranked CSV to
-        ``data/outputs/ushs_scores_YYYYMMDD.csv``.
+        ``data/outputs/ushs_scores_YYYYMMDD.csv`` unless ``save_output`` is
+        False — a backtest calls this once per simulated day and must
+        neither spend I/O writing thousands of CSVs nor have every one of
+        them collide on the same real-wall-clock-dated filename.
         """
         if df.empty:
             raise ValueError("compute_ushs: input DataFrame is empty")
@@ -140,6 +161,8 @@ class FundamentalScorer:
             "altman_z_score": self.score_altman_z(df),
             "beneish_m_score": self.score_beneish_m(df),
             "sentiment_score": pd.Series(50.0, index=df.index),  # neutral — no sentiment agent live yet
+            "momentum_score": self.score_momentum(df),
+            "low_vol_score": self.score_low_vol(df),
         }
         for col, values in scores.items():
             df[col] = values.reindex(df.index)
@@ -153,13 +176,14 @@ class FundamentalScorer:
             df["ushs"], bins=[0, 40, 60, 80, 100], labels=["D", "C", "B", "A"], include_lowest=True,
         )
 
-        df_sorted = df.sort_values("ushs_rank")
-        out_path = settings.OUTPUT_DIR / f"ushs_scores_{today_str()}.csv"
-        cols_to_save = [c for c in (_SCORE_COLUMNS + ["ushs", "ushs_rank", "ushs_grade", "sector"])
-                         if c in df_sorted.columns]
-        df_sorted[cols_to_save].to_csv(out_path)
-        logger.info(f"[USHS] Saved to {out_path}")
-        logger.info("\n" + df_sorted[["ushs", "ushs_rank", "ushs_grade", "sector"]].head(15).to_string())
+        if save_output:
+            df_sorted = df.sort_values("ushs_rank")
+            out_path = settings.OUTPUT_DIR / f"ushs_scores_{today_str()}.csv"
+            cols_to_save = [c for c in (_SCORE_COLUMNS + ["ushs", "ushs_rank", "ushs_grade", "sector"])
+                             if c in df_sorted.columns]
+            df_sorted[cols_to_save].to_csv(out_path)
+            logger.info(f"[USHS] Saved to {out_path}")
+            logger.info("\n" + df_sorted[["ushs", "ushs_rank", "ushs_grade", "sector"]].head(15).to_string())
         return df
 
     def get_eligible_tickers(self, scored_df: pd.DataFrame) -> list[str]:

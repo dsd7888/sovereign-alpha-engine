@@ -8,6 +8,7 @@ numbers actually charged. State persists atomically to
 """
 from __future__ import annotations
 
+from collections.abc import Callable
 from pathlib import Path
 
 import pandas as pd
@@ -39,32 +40,59 @@ class PaperBroker:
     ```
     """
 
-    def __init__(self, state_path: Path | None = None) -> None:
+    def __init__(
+        self,
+        state_path: Path | None = None,
+        persist: bool = True,
+        clock: Callable[[], str] | None = None,
+        initial_capital: float | None = None,
+    ) -> None:
+        """
+        ``persist=False`` skips all disk I/O — state lives in memory only,
+        for a backtest driving thousands of trades across a multi-year
+        simulation without hitting the filesystem on every one.
+
+        ``clock`` supplies the "today" string every trade/NAV entry is
+        stamped with; production leaves it as ``today_str`` (real wall
+        clock). A backtest passes a callable whose return value it can
+        change on each simulated day — without this, every historical
+        day's trade and NAV entry would be stamped with the same real
+        date, collapsing the whole simulated history into one entry.
+        """
         self.cost_model = GrowwCostModel()
         self.state_path = state_path or settings.PAPER_STATE_FILE
-        self.state = self._load_or_init_state()
+        self.persist = persist
+        self._today = clock or today_str
+        self.state = (
+            self._load_or_init_state() if persist else self._fresh_state(initial_capital)
+        )
 
     # ── State management ────────────────────────────────────────────────
+
+    def _fresh_state(self, initial_capital: float | None) -> dict:
+        capital = initial_capital if initial_capital is not None else settings.INITIAL_CAPITAL_INR
+        return {
+            "initial_capital": capital,
+            "cash": capital,
+            "peak_value": capital,
+            "holdings": {},
+            "trade_log": [],
+            "daily_nav": {},
+            "last_updated": self._today(),
+        }
 
     def _load_or_init_state(self) -> dict:
         state = load_json(self.state_path)
         if not state or "initial_capital" not in state:
             logger.info(f"[PAPER] Initialising new portfolio with Rs.{settings.INITIAL_CAPITAL_INR:,.0f}")
-            state = {
-                "initial_capital": settings.INITIAL_CAPITAL_INR,
-                "cash": settings.INITIAL_CAPITAL_INR,
-                "peak_value": settings.INITIAL_CAPITAL_INR,
-                "holdings": {},
-                "trade_log": [],
-                "daily_nav": {},
-                "last_updated": today_str(),
-            }
+            state = self._fresh_state(None)
             save_json(state, self.state_path)
         return state
 
     def _save_state(self) -> None:
-        self.state["last_updated"] = today_str()
-        save_json(self.state, self.state_path)
+        self.state["last_updated"] = self._today()
+        if self.persist:
+            save_json(self.state, self.state_path)
 
     # ── Valuation ────────────────────────────────────────────────────────
 
@@ -87,7 +115,7 @@ class PaperBroker:
             holdings_value += holding["qty"] * holding.get("last_price", 0.0)
 
         total_value = self.state["cash"] + holdings_value
-        self.state["daily_nav"][today_str()] = round(total_value, 2)
+        self.state["daily_nav"][self._today()] = round(total_value, 2)
         self.state["peak_value"] = max(self.state["peak_value"], total_value)
         self._save_state()
         return total_value
@@ -119,11 +147,11 @@ class PaperBroker:
             existing.update({"qty": new_qty, "avg_cost": round(new_avg, 4), "last_price": price})
         else:
             self.state["holdings"][ticker] = {
-                "qty": qty, "avg_cost": price, "last_price": price, "entry_date": today_str(),
+                "qty": qty, "avg_cost": price, "last_price": price, "entry_date": self._today(),
             }
 
         trade_record = {
-            "date": today_str(), "ticker": ticker, "action": "BUY",
+            "date": self._today(), "ticker": ticker, "action": "BUY",
             "qty": qty, "price": price, "value": trade_value,
             "cost_breakdown": {
                 "brokerage": costs.brokerage, "stt": costs.stt, "exchange_tc": costs.exchange_tc,
@@ -162,7 +190,7 @@ class PaperBroker:
         realised_pnl = (price - holding["avg_cost"]) * qty - costs.total
 
         trade_record = {
-            "date": today_str(), "ticker": ticker, "action": "SELL",
+            "date": self._today(), "ticker": ticker, "action": "SELL",
             "qty": qty, "price": price, "value": trade_value,
             "cost_breakdown": {
                 "brokerage": costs.brokerage, "stt": costs.stt, "exchange_tc": costs.exchange_tc,

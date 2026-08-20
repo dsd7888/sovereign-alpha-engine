@@ -24,5 +24,12 @@ reports/
 !data/paper_portfolio/
 !data/paper_portfolio/portfolio_state.json
 
+# Keep backtest result history (small JSON summaries, not the HTML/PNG
+# report artifacts — those are gitignored under data/outputs/ and go to
+# gh-pages only) — a version-controlled record of how each scheduled
+# backtest assessed the strategy over time.
+!data/backtest_history/
+!data/backtest_history/*.json
+
 # macOS
 .DS_Store

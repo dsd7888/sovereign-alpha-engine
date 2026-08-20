@@ -38,18 +38,38 @@ FUNDAMENTALS_CACHE_DAYS = 7
 VIX_CACHE_HOURS = 4
 
 # ── USHS (Unified Stock Health Score) weights — must sum to 1.0 ───────────
+# momentum_score/low_vol_score added to bring in two well-documented,
+# point-in-time-safe equity factors (Jegadeesh & Titman 1993; Ang, Hodrick,
+# Xing & Zhang 2006 / Frazzini-Pedersen "Betting Against Beta") that were
+# previously entirely absent — every other factor here is fundamentals-based
+# value/quality, with no exposure to price trend or risk-adjusted stability.
+# Existing weights were scaled down proportionally (x0.82) to make room.
 USHS_WEIGHTS = {
-    "pe_score": 0.12,
-    "pb_score": 0.08,
-    "roe_score": 0.15,
-    "fcf_yield_score": 0.15,
-    "debt_equity_score": 0.10,
-    "promoter_pledge_score": 0.10,
-    "altman_z_score": 0.12,
-    "beneish_m_score": 0.10,
-    "sentiment_score": 0.08,
+    "pe_score": 0.10,
+    "pb_score": 0.07,
+    "roe_score": 0.12,
+    "fcf_yield_score": 0.12,
+    "debt_equity_score": 0.08,
+    "promoter_pledge_score": 0.08,
+    "altman_z_score": 0.10,
+    "beneish_m_score": 0.08,
+    "sentiment_score": 0.07,
+    "momentum_score": 0.10,
+    "low_vol_score": 0.08,
 }
 assert abs(sum(USHS_WEIGHTS.values()) - 1.0) < 1e-9, "USHS_WEIGHTS must sum to 1.0"
+
+# ── Technical factors (momentum / low-volatility) ──────────────────────────
+# 12-1 momentum: cumulative return over the trailing 12 months, skipping the
+# most recent month — the skip avoids contaminating the momentum signal with
+# well-documented short-term (1-month) reversal.
+MOMENTUM_LOOKBACK_DAYS = 252
+MOMENTUM_SKIP_DAYS = 21
+# Trailing realised volatility window for the low-vol factor.
+LOW_VOL_LOOKBACK_DAYS = 126
+# Below this many price observations, momentum/low-vol are undefined for a
+# ticker (too close to listing, or a large gap in the price series).
+MIN_TECHNICAL_HISTORY_DAYS = MOMENTUM_LOOKBACK_DAYS + MOMENTUM_SKIP_DAYS
 
 # ── Groww brokerage cost model — Equity Delivery, post 21-Jun-2025 rates ──
 # BUY:  brokerage = clip(0.1% of value, min=5, max=20)
@@ -102,6 +122,33 @@ MU_SHRINKAGE = True  # James-Stein shrinkage on drift estimates — set False to
 SCREENER_BASE_URL = "https://www.screener.in/company/"
 SCREENER_DELAY_SEC = 3.0  # non-negotiable — avoids IP ban
 SCREENER_TIMEOUT_SEC = 15
+
+# ── Backtesting ──────────────────────────────────────────────────────────
+# Two backtest modes, both replaying the exact production modules
+# (PortfolioOptimizer, PaperBroker, RiskGuardian, GrowwCostModel) — only the
+# data source and the stock-selection signal differ:
+#
+#  "technical" (primary): momentum + low-vol only. Point-in-time-safe over
+#  the full price history available (real daily closes, no lookahead) —
+#  this is the statistically meaningful long-horizon validation.
+#
+#  "full": replays USHS including fundamentals (PE/PB/ROE/Altman/Beneish),
+#  reconstructed from yfinance's ANNUAL statements (~5yr depth for NSE
+#  names) with a reporting lag. Promoter pledge and sentiment have no
+#  historical source at all (Screener has no API/history; sentiment is a
+#  neutral placeholder in production too) so both are held at neutral (50)
+#  in this mode — documented, not silently faked.
+BACKTEST_MAX_LOOKBACK_YEARS = 10  # bounded by whatever yfinance actually returns, not a promise
+BACKTEST_REBALANCE_FREQUENCY_DAYS = 1  # daily, matching production cadence
+BACKTEST_MIN_START_HISTORY_DAYS = MIN_TECHNICAL_HISTORY_DAYS + 30  # warm-up buffer before day 1 of the sim
+BACKTEST_WALK_FORWARD_FOLD_MONTHS = 12  # one fold per calendar year of out-of-sample evaluation
+
+# Annual results in India are typically public within ~60-90 days of fiscal
+# year-end (NSE/SEBI disclosure norms); a fundamental snapshot dated FY-end
+# is not actually knowable to a trader until this many days later. Skipping
+# this lag would let the "full" backtest mode see results before they
+# existed — the single most common way a backtest lies to you.
+ANNUAL_RESULTS_REPORTING_LAG_DAYS = 75
 
 # ── Altman Z''-Score applicability ─────────────────────────────────────────
 # Banks/NBFCs/insurers don't have current assets/liabilities in the

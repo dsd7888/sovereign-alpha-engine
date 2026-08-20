@@ -17,6 +17,8 @@ def _sample_df() -> pd.DataFrame:
         "promoter_pledge_pct": [0.0, 60.0, np.nan, 25.0],
         "altman_z": [3.0, 1.0, np.nan, 2.0],
         "beneish_m": [-3.0, -1.5, np.nan, -2.0],
+        "momentum_12_1": [0.30, -0.10, np.nan, 0.05],
+        "low_vol_6m": [0.15, 0.45, np.nan, 0.25],
         "sector": ["IT", "Banking", "IT", "Auto"],
     }, index=["A.NS", "B.NS", "C.NS", "D.NS"])
 
@@ -89,6 +91,22 @@ class TestFactorScorers:
 
     def test_beneish_m_missing_is_neutral(self):
         scored = self.scorer.score_beneish_m(self.df)
+        assert scored["C.NS"] == 50.0
+
+    def test_momentum_higher_return_scores_higher(self):
+        scored = self.scorer.score_momentum(self.df)
+        assert scored["A.NS"] > scored["D.NS"] > scored["B.NS"]
+
+    def test_momentum_missing_is_neutral(self):
+        scored = self.scorer.score_momentum(self.df)
+        assert scored["C.NS"] == 50.0
+
+    def test_low_vol_lower_volatility_scores_higher(self):
+        scored = self.scorer.score_low_vol(self.df)
+        assert scored["A.NS"] > scored["D.NS"] > scored["B.NS"]
+
+    def test_low_vol_missing_is_neutral(self):
+        scored = self.scorer.score_low_vol(self.df)
         assert scored["C.NS"] == 50.0
 
 

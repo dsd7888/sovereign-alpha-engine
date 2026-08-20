@@ -47,6 +47,20 @@ def run_full_pipeline(open_report: bool = False, mode: str = "full", force: bool
             logger.critical(f"No data available at all: {e2}. Aborting run.")
             return
 
+    # Momentum + low-vol are computed from price history alone (no Screener
+    # dependency), so a failure here must never abort the run — it just
+    # means those two factors fall back to neutral (50) for this run, same
+    # as any other USHS input with missing data.
+    from sovereign_alpha.ingestion.data_ingestor import DataIngestor
+    from sovereign_alpha.ingestion.technical_features import compute_technical_features
+
+    try:
+        technical_ohlcv = DataIngestor().fetch_ohlcv(PILOT_UNIVERSE)
+        technical_df = compute_technical_features(technical_ohlcv, PILOT_UNIVERSE)
+        harmonized_df = harmonized_df.join(technical_df, how="left")
+    except Exception as e:
+        logger.warning(f"[TECHNICAL] Momentum/low-vol unavailable this run: {e}")
+
     # ── L3: scoring ──────────────────────────────────────────────────────
     logger.info("[STEP 2/6] Computing USHS scores...")
     from sovereign_alpha.scoring.fundamental_scorer import FundamentalScorer
