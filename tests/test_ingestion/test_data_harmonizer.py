@@ -42,6 +42,21 @@ class TestComputeAltmanZ:
         assert not np.isnan(z)
         assert -5 <= z <= 15
 
+    def test_x4_uses_total_liabilities_not_total_debt_when_book_equity_known(self):
+        # A low-debt company (financed mostly by trade payables/provisions,
+        # not borrowings) has total_debt << total_liabilities. X4 must be
+        # book_equity / total_liabilities (derived here as total_assets -
+        # book_equity), not book_equity / total_debt — the latter divides by
+        # a near-zero denominator and saturates Z at the +15 cap regardless
+        # of the company's real distress profile.
+        fin = {
+            "total_assets": 1e10, "ebit": 8e8, "book_equity": 6e9, "total_debt": 1e6,
+            "working_capital": 2e9, "retained_earnings": 4e9,
+        }
+        z = DataHarmonizer.compute_altman_z(fin, sector="IT")
+        assert z != 15.0  # must not be saturated at the clip ceiling
+        assert z == pytest.approx(4.7286, abs=1e-3)
+
     def test_banking_sector_excluded_even_with_missing_working_capital(self):
         # Sector exclusion must short-circuit before any field defaulting
         # (e.g. `wc or 0.0`) happens — missing working_capital must never

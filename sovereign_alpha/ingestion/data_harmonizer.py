@@ -282,9 +282,12 @@ class DataHarmonizer:
 
         wc = fin.get("working_capital") or 0.0
         re = fin.get("retained_earnings") or 0.0
-        tl = fin.get("total_debt") or 0.0
         bve = fin.get("book_equity")
-        if bve is None:
+        total_debt = fin.get("total_debt") or 0.0
+        if bve is not None:
+            tl = ta - bve  # total liabilities = total assets - book equity (accounting identity)
+        else:
+            tl = total_debt  # no book equity available; approximate with interest-bearing debt only
             bve = ta - tl
 
         x1, x2, x3 = wc / ta, re / ta, ebit / ta

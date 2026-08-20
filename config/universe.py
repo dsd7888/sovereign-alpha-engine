@@ -58,6 +58,10 @@ SECTOR_MAP: dict[str, str] = {
     "TITAN.NS": "Consumer", "ULTRACEMCO.NS": "Cement",
     "JSWSTEEL.NS": "Metals", "TATASTEEL.NS": "Metals", "HINDALCO.NS": "Metals",
     "ADANIENT.NS": "Diversified", "GRASIM.NS": "Diversified",
+    "BANDHANBNK.NS": "Banking", "BANKBARODA.NS": "Banking", "CANBK.NS": "Banking",
+    "FEDERALBNK.NS": "Banking", "IDFCFIRSTB.NS": "Banking",
+    "ICICIGI.NS": "Insurance", "ICICIPRULI.NS": "Insurance", "MFSL.NS": "Insurance",
+    "ABCAPITAL.NS": "NBFC", "CHOLAFIN.NS": "NBFC", "LICHSGFIN.NS": "NBFC",
 }
 
 

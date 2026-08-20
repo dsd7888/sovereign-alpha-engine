@@ -102,7 +102,8 @@ def run_full_pipeline(open_report: bool = False, mode: str = "full", force: bool
     from sovereign_alpha.ingestion.data_ingestor import DataIngestor
 
     broker = PaperBroker()
-    price_universe = set(target_weights) | set(broker.state["holdings"])
+    held_tickers = {t for t, h in broker.state["holdings"].items() if h.get("qty", 0) > 0}
+    price_universe = set(target_weights) | held_tickers
 
     ingestor = DataIngestor()
     try:
@@ -120,7 +121,10 @@ def run_full_pipeline(open_report: bool = False, mode: str = "full", force: bool
 
     # ── L5: risk check ────────────────────────────────────────────────────
     logger.info(f"[STEP 5/6] Risk Guardian check (VIX: {vix:.1f})...")
-    from sovereign_alpha.risk.risk_guardian import RiskGuardian
+    import pandas as pd
+
+    from sovereign_alpha.risk.risk_guardian import Action, RiskGuardian
+    from sovereign_alpha.utils.validators import is_valid_price
 
     portfolio_value = broker.update_prices(current_prices)
     peak_value = broker.state["peak_value"]
@@ -128,6 +132,31 @@ def run_full_pipeline(open_report: bool = False, mode: str = "full", force: bool
     risk_guard = RiskGuardian()
     circuit_action = risk_guard.check_circuit_breaker(portfolio_value, peak_value, vix)
     logger.info(f"[RISK] Circuit action: {circuit_action.value}")
+
+    # Per-position overrides: a per-stock stop-loss or a promoter-pledge
+    # surge exits that one holding immediately, ahead of and independent
+    # from today's target weights, so the freed cash is available for the
+    # rebalance below. These were previously computed for the report only
+    # and never actually executed a sell.
+    for ticker in list(held_tickers):
+        holding = broker.state["holdings"].get(ticker)
+        if not holding or holding.get("qty", 0) <= 0:
+            continue
+        price = current_prices.get(ticker)
+        if not is_valid_price(price):
+            continue
+
+        action = risk_guard.check_single_position(ticker, holding.get("avg_cost", 0.0), price)
+        if action == Action.HOLD and ticker in scored_df.index:
+            new_pledge = scored_df.loc[ticker, "promoter_pledge_pct"]
+            prev_pledge = holding.get("promoter_pledge_pct")
+            if pd.notna(new_pledge):
+                if prev_pledge is not None:
+                    action = risk_guard.check_promoter_pledge(ticker, float(new_pledge), prev_pledge)
+                holding["promoter_pledge_pct"] = float(new_pledge)
+
+        if action == Action.FULL_EXIT:
+            broker.sell_all(ticker, price)
 
     # ── L6: execute rebalance ─────────────────────────────────────────────
     logger.info("[STEP 6/6] Rebalancing paper portfolio...")
