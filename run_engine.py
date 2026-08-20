@@ -91,18 +91,28 @@ def run_full_pipeline(open_report: bool = False, mode: str = "full", force: bool
         target_weights = {t: 1.0 / n for t in eligible_tickers}
 
     # ── Current prices + VIX ─────────────────────────────────────────────
+    # Prices must cover target_weights *and* every currently-held ticker —
+    # not just target_weights. A holding that fell out of today's target
+    # (target_w == 0) is exactly what paper_broker.rebalance() needs to
+    # exit, but it can only do so if current_prices actually has a price
+    # for it; otherwise that position is stuck at its stale last_price
+    # forever, un-marked and un-sellable.
     logger.info("[STEP 4/6] Fetching current prices + India VIX...")
+    from sovereign_alpha.execution.paper_broker import PaperBroker
     from sovereign_alpha.ingestion.data_ingestor import DataIngestor
+
+    broker = PaperBroker()
+    price_universe = set(target_weights) | set(broker.state["holdings"])
 
     ingestor = DataIngestor()
     try:
-        ohlcv = ingestor.fetch_ohlcv(list(target_weights.keys()))
+        ohlcv = ingestor.fetch_ohlcv(list(price_universe))
     except Exception as e:
         logger.critical(f"[STEP 4 FAILED] Could not fetch current prices: {e}. Aborting run.")
         return
 
     current_prices = {}
-    for ticker in target_weights:
+    for ticker in price_universe:
         subset = ohlcv.loc[ohlcv["ticker"] == ticker, "Adj_Close"].dropna()
         if len(subset) > 0:
             current_prices[ticker] = float(subset.iloc[-1])
@@ -110,10 +120,8 @@ def run_full_pipeline(open_report: bool = False, mode: str = "full", force: bool
 
     # ── L5: risk check ────────────────────────────────────────────────────
     logger.info(f"[STEP 5/6] Risk Guardian check (VIX: {vix:.1f})...")
-    from sovereign_alpha.execution.paper_broker import PaperBroker
     from sovereign_alpha.risk.risk_guardian import RiskGuardian
 
-    broker = PaperBroker()
     portfolio_value = broker.update_prices(current_prices)
     peak_value = broker.state["peak_value"]
 
