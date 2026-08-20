@@ -12,7 +12,7 @@ from enum import Enum
 import numpy as np
 
 from config import settings
-from config.universe import NIFTY_MIDCAP_100_SET
+from config.universe import NON_LARGECAP_SET
 from sovereign_alpha.utils.logger import logger
 
 
@@ -64,7 +64,7 @@ class RiskGuardian:
         loss_pct = (entry_price - current_price) / entry_price
         stop = (
             settings.SINGLE_STOCK_STOP_LOSS_MIDCAP
-            if ticker in NIFTY_MIDCAP_100_SET
+            if ticker in NON_LARGECAP_SET
             else settings.SINGLE_STOCK_STOP_LOSS
         )
         if loss_pct >= stop:

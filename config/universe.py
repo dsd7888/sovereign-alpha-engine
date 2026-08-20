@@ -1,7 +1,43 @@
-"""Ticker universe and sector mapping. yfinance requires the ``.NS`` suffix for NSE symbols."""
+"""
+Ticker universe and sector mapping. yfinance requires the ``.NS`` suffix
+for NSE symbols.
+
+The real universe/sector data lives in ``data/universe/universe_data.json``,
+built periodically by ``sovereign_alpha.ingestion.universe_builder`` from
+real NSE index constituent files (see ``reconstitute_universe.py`` /
+``.github/workflows/universe_reconstitution.yml`` — monthly). This module
+loads that file at import time.
+
+Why not just hardcode the list here, as before: a hand-typed list is
+permanently behind the market by construction — it can never contain a
+stock that IPO'd or got promoted into an index after the list was last
+edited, and nobody's job is to keep it current. It also silently mislabels
+itself over time — the list this replaced was named ``NIFTY_MIDCAP_100``
+but only actually contained 65 tickers, not 100.
+
+The constants below (``LARGE_CAP_UNIVERSE``, ``NON_LARGECAP_UNIVERSE``,
+``NON_LARGECAP_SET``, ``PILOT_UNIVERSE``, ``SECTOR_MAP``, ``sector_of``)
+are the same public API every other module already imports — this file
+changed where the data comes from, not the interface, so nothing
+downstream needed to change.
+
+If ``universe_data.json`` doesn't exist yet (first run before any
+reconstitution) or is corrupt, this falls back to a small bundled seed
+list rather than failing import entirely — a wrong-but-working universe
+beats an engine that can't start.
+"""
 from __future__ import annotations
 
-NIFTY_50: list[str] = [
+import json
+
+from config import settings
+
+_UNIVERSE_DATA_PATH = settings.BASE_DIR / "data" / "universe" / "universe_data.json"
+
+# Bundled fallback seed — used only if universe_data.json is missing or
+# corrupt. Deliberately small and static; the real, current universe comes
+# from the dynamic fetch above once reconstitution has run at least once.
+_FALLBACK_NIFTY_50: list[str] = [
     "RELIANCE.NS", "TCS.NS", "HDFCBANK.NS", "INFY.NS", "ICICIBANK.NS",
     "HINDUNILVR.NS", "ITC.NS", "SBIN.NS", "BHARTIARTL.NS", "KOTAKBANK.NS",
     "LT.NS", "AXISBANK.NS", "ASIANPAINT.NS", "MARUTI.NS", "BAJFINANCE.NS",
@@ -15,7 +51,7 @@ NIFTY_50: list[str] = [
     "BAJAJ-AUTO.NS",
 ]
 
-NIFTY_MIDCAP_100: list[str] = [
+_FALLBACK_NON_LARGECAP: list[str] = [
     "ABCAPITAL.NS", "ABFRL.NS", "AUROPHARMA.NS", "BALKRISIND.NS", "BANDHANBNK.NS",
     "BANKBARODA.NS", "BERGEPAINT.NS", "BHEL.NS", "BOSCHLTD.NS", "CANBK.NS",
     "CHOLAFIN.NS", "COLPAL.NS", "CONCOR.NS", "COFORGE.NS", "CROMPTON.NS",
@@ -31,14 +67,7 @@ NIFTY_MIDCAP_100: list[str] = [
     "TVSMOTOR.NS", "UBL.NS", "VEDL.NS", "VOLTAS.NS", "ZOMATO.NS",
 ]
 
-NIFTY_MIDCAP_100_SET: frozenset[str] = frozenset(NIFTY_MIDCAP_100)
-
-# Large-cap liquidity + midcap alpha sleeve; Nifty 500 once the expanded pilot validates.
-PILOT_UNIVERSE: list[str] = list(dict.fromkeys(NIFTY_50 + NIFTY_MIDCAP_100))
-
-# Sector mapping — used to normalise P/E within its peer group rather than
-# across the whole (highly heterogeneous) index.
-SECTOR_MAP: dict[str, str] = {
+_FALLBACK_SECTOR_MAP: dict[str, str] = {
     "RELIANCE.NS": "Energy", "ONGC.NS": "Energy", "BPCL.NS": "Energy",
     "TCS.NS": "IT", "INFY.NS": "IT", "HCLTECH.NS": "IT",
     "WIPRO.NS": "IT", "TECHM.NS": "IT",
@@ -63,6 +92,41 @@ SECTOR_MAP: dict[str, str] = {
     "ICICIGI.NS": "Insurance", "ICICIPRULI.NS": "Insurance", "MFSL.NS": "Insurance",
     "ABCAPITAL.NS": "NBFC", "CHOLAFIN.NS": "NBFC", "LICHSGFIN.NS": "NBFC",
 }
+
+
+def _load_universe_data() -> dict:
+    try:
+        raw = json.loads(_UNIVERSE_DATA_PATH.read_text(encoding="utf-8"))
+        if not raw.get("tickers") or not raw.get("large_cap_tickers"):
+            raise ValueError("universe_data.json missing required keys")
+        return raw
+    except (FileNotFoundError, json.JSONDecodeError, ValueError):
+        return {
+            "tickers": list(dict.fromkeys(_FALLBACK_NIFTY_50 + _FALLBACK_NON_LARGECAP)),
+            "large_cap_tickers": _FALLBACK_NIFTY_50,
+            "non_large_cap_tickers": _FALLBACK_NON_LARGECAP,
+            "sector_map": _FALLBACK_SECTOR_MAP,
+        }
+
+
+_DATA = _load_universe_data()
+
+# Nifty 50 + Nifty Next 50 — the large-cap liquidity anchor. Named
+# generically because, unlike the constant this replaced, it's no longer
+# only Nifty 50's own membership.
+LARGE_CAP_UNIVERSE: list[str] = _DATA["large_cap_tickers"]
+# Everything in PILOT_UNIVERSE that isn't in the large-cap tier — mid,
+# small, and thematic (e.g. defence) constituents. Named generically
+# because, unlike the old NIFTY_MIDCAP_100 list, this is no longer just
+# one index's membership.
+NON_LARGECAP_UNIVERSE: list[str] = _DATA["non_large_cap_tickers"]
+NON_LARGECAP_SET: frozenset[str] = frozenset(NON_LARGECAP_UNIVERSE)
+
+PILOT_UNIVERSE: list[str] = list(dict.fromkeys(_DATA["tickers"]))
+
+# Sector mapping — used to normalise P/E within its peer group, and to
+# gate Altman Z off financials (settings.ALTMAN_Z_EXCLUDED_SECTORS).
+SECTOR_MAP: dict[str, str] = _DATA["sector_map"]
 
 
 def sector_of(ticker: str) -> str:

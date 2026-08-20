@@ -17,7 +17,13 @@ concurrency:
 jobs:
   run-engine:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    # Bumped from 45: the universe grew from a static 115 tickers to a
+    # dynamically-reconstituted set (up to ~400, see
+    # sovereign_alpha/ingestion/universe_builder.py and
+    # universe_reconstitution.yml), and Screener.in scraping — the
+    # pipeline's dominant cost at ~3-5s/ticker — scales directly with
+    # universe size.
+    timeout-minutes: 100
     env:
       # GitHub-hosted runners default to UTC. The engine's date/time code
       # (today_str, is_market_day, report + log timestamps) calls naive

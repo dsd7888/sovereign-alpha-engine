@@ -31,5 +31,12 @@ reports/
 !data/backtest_history/
 !data/backtest_history/*.json
 
+# Keep the reconstituted trading universe — config/universe.py loads this
+# at import time; without it committed, every fresh checkout (including
+# every daily/backtest CI run) would fall back to the small static seed
+# list instead of the real, periodically-refreshed universe.
+!data/universe/
+!data/universe/universe_data.json
+
 # macOS
 .DS_Store

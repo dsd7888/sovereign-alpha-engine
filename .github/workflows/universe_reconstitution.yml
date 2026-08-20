@@ -1,0 +1,73 @@
+name: Sovereign Alpha Engine — Universe Reconstitution
+
+on:
+  schedule:
+    # Monthly — real NSE index reconstitution only happens
+    # quarterly/semi-annually, so a monthly refresh is already generous,
+    # not a bottleneck. 1st of the month, off the hour.
+    - cron: '11 5 1 * *'
+  workflow_dispatch:
+    inputs:
+      max_size:
+        description: 'Max universe size (bounded by the Screener.in daily-run time budget)'
+        required: false
+        default: '400'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "universe-reconstitution"
+  cancel-in-progress: false
+
+jobs:
+  reconstitute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TZ: Asia/Kolkata
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip --quiet
+          pip install -e ".[dev]" --quiet
+
+      - name: Reconstitute universe
+        run: python reconstitute_universe.py --max-size "${{ github.event.inputs.max_size || '400' }}"
+        env:
+          PYTHONUNBUFFERED: "1"
+          PYTHONPATH: "."
+
+      - name: Commit updated universe back to repo
+        run: |
+          git config user.name  "Sovereign Alpha Bot"
+          git config user.email "sovereign-alpha-bot@users.noreply.github.com"
+          git add data/universe/universe_data.json
+          git diff --cached --quiet && echo "No universe changes" || \
+            git commit -m "universe: reconstitute $(date -u +'%Y-%m-%d')"
+
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push origin main; then
+              break
+            fi
+            if [ "$attempt" = "5" ]; then
+              echo "::error::Failed to push universe reconstitution after 5 attempts"
+              exit 1
+            fi
+            echo "Push attempt $attempt failed — retrying in 5s..."
+            sleep 5
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

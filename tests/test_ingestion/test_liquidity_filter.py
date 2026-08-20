@@ -1,18 +1,18 @@
 import pandas as pd
 
 from config import settings
-from config.universe import NIFTY_MIDCAP_100, NIFTY_50, PILOT_UNIVERSE
+from config.universe import LARGE_CAP_UNIVERSE, NON_LARGECAP_UNIVERSE, PILOT_UNIVERSE
 from sovereign_alpha.ingestion.data_harmonizer import DataHarmonizer
 
 
 class TestUniverseExpansion:
-    def test_midcap_list_nonempty_and_ns_suffixed(self):
-        assert len(NIFTY_MIDCAP_100) >= 50
-        assert all(t.endswith(".NS") for t in NIFTY_MIDCAP_100)
+    def test_non_largecap_list_nonempty_and_ns_suffixed(self):
+        assert len(NON_LARGECAP_UNIVERSE) >= 50
+        assert all(t.endswith(".NS") for t in NON_LARGECAP_UNIVERSE)
 
-    def test_pilot_includes_large_and_mid(self):
-        assert set(NIFTY_50).issubset(PILOT_UNIVERSE)
-        assert set(NIFTY_MIDCAP_100).issubset(PILOT_UNIVERSE)
+    def test_pilot_includes_large_and_non_largecap(self):
+        assert set(LARGE_CAP_UNIVERSE).issubset(PILOT_UNIVERSE)
+        assert set(NON_LARGECAP_UNIVERSE).issubset(PILOT_UNIVERSE)
         assert len(PILOT_UNIVERSE) == len(set(PILOT_UNIVERSE))
 
 

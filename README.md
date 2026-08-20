@@ -4,7 +4,7 @@ Automated quantitative paper trading engine for Indian equities.
 
 | | |
 |---|---|
-| **Universe** | Nifty 50 + Midcap 100 (115 tickers) |
+| **Universe** | Nifty 50 + Next 50 + Midcap 150 + Smallcap 250 (sampled) + Nifty India Defence, dynamically reconstituted monthly — currently ~380 tickers |
 | **Capital** | ₹1,00,000 virtual |
 | **Cost model** | Groww equity delivery (2025–26 rates) |
 | **Runs** | Every weekday at 17:33 IST via GitHub Actions |
@@ -29,6 +29,23 @@ L3 FundamentalScorer → Unified Stock Health Score (USHS 0–100), incl. moment
 L4 PortfolioOptimizer → Ledoit-Wolf + James-Stein shrinkage, Monte Carlo + Cholesky + CVaR frontier
 L5 RiskGuardian → Circuit breakers (VIX + drawdown), per-position stop-loss
 L6 PaperBroker → Virtual execution with exact Groww costs
+
+## 🌐 Universe Reconstitution
+
+`config/universe.py` used to be a hand-typed, static ticker list — permanently behind the
+market by construction, and blind to entire sectors (defence, semiconductors/electronics
+manufacturing, EV) that mostly live outside Nifty 50/Midcap 100. It now loads
+`data/universe/universe_data.json`, rebuilt monthly via `.github/workflows/universe_reconstitution.yml`
+from real NSE index constituent files — Nifty 50, Next 50, Midcap 150, Smallcap 250
+(sampled — see `sovereign_alpha/ingestion/universe_builder.py` for why a random sample
+beats naive truncation here), and the dedicated Nifty India Defence index. Runs separately
+from the daily engine, not on its critical path — a stale-but-working universe beats a
+trading day that can't start because NSE's archive happened to be unreachable.
+
+```
+python reconstitute_universe.py                # writes data/universe/universe_data.json
+python reconstitute_universe.py --max-size 300  # override the size cap
+```
 
 ## 📈 Backtesting & Walk-Forward Validation
 
