@@ -6,61 +6,61 @@
     "LUPIN.NS": {
       "qty": 10,
       "avg_cost": 2218.04,
-      "last_price": 2188.0,
+      "last_price": 2175.5,
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
       "qty": 22,
       "avg_cost": 402.6,
-      "last_price": 406.8999938964844,
+      "last_price": 404.0,
       "entry_date": "20260820"
     },
     "HEROMOTOCO.NS": {
       "qty": 1,
       "avg_cost": 5709.5,
-      "last_price": 5735.0,
+      "last_price": 5624.5,
       "entry_date": "20260820"
     },
     "INDUSTOWER.NS": {
       "qty": 20,
       "avg_cost": 374.41,
-      "last_price": 374.25,
+      "last_price": 387.25,
       "entry_date": "20260820"
     },
     "CHENNPETRO.NS": {
       "qty": 2,
       "avg_cost": 1440.300048828125,
-      "last_price": 1412.0999755859375,
+      "last_price": 1401.199951171875,
       "entry_date": "20260820"
     },
     "NATIONALUM.NS": {
       "qty": 5,
       "avg_cost": 386.54998779296875,
-      "last_price": 403.29998779296875,
+      "last_price": 397.79998779296875,
       "entry_date": "20260820"
     },
     "NATCOPHARM.NS": {
       "qty": 1,
       "avg_cost": 880.4437,
-      "last_price": 884.0499877929688,
+      "last_price": 866.25,
       "entry_date": "20260820"
     },
     "COLPAL.NS": {
       "qty": 5,
       "avg_cost": 1883.36,
-      "last_price": 1889.0,
+      "last_price": 1876.800048828125,
       "entry_date": "20260820"
     },
     "ITC.NS": {
       "qty": 102,
       "avg_cost": 268.8069,
-      "last_price": 269.70001220703125,
+      "last_price": 271.3999938964844,
       "entry_date": "20260820"
     },
     "CIEINDIA.NS": {
       "qty": 23,
       "avg_cost": 403.7283,
-      "last_price": 401.04998779296875,
+      "last_price": 395.95001220703125,
       "entry_date": "20260820"
     }
   },
@@ -452,7 +452,8 @@
     "20260820": 99791.78,
     "20260821": 99941.97,
     "20260824": 99545.09,
-    "20260825": 99533.19
+    "20260825": 99533.19,
+    "20260826": 99421.89
   },
-  "last_updated": "20260825"
+  "last_updated": "20260826"
 }
