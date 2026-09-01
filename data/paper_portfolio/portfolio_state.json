@@ -1,72 +1,72 @@
 {
   "initial_capital": 100000.0,
-  "cash": 193.8725734980244,
+  "cash": 7038.603832018468,
   "peak_value": 100068.63191213323,
   "holdings": {
     "LUPIN.NS": {
-      "qty": 6,
-      "avg_cost": 2218.04,
-      "last_price": 2171.5,
+      "qty": 9,
+      "avg_cost": 2208.16,
+      "last_price": 2188.39990234375,
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
       "qty": 22,
       "avg_cost": 402.6,
-      "last_price": 401.0,
+      "last_price": 401.75,
       "entry_date": "20260820"
     },
     "HEROMOTOCO.NS": {
       "qty": 1,
       "avg_cost": 5709.5,
-      "last_price": 5600.0,
+      "last_price": 5450.0,
       "entry_date": "20260820"
     },
     "INDUSTOWER.NS": {
       "qty": 20,
       "avg_cost": 374.41,
-      "last_price": 380.0,
+      "last_price": 388.79998779296875,
       "entry_date": "20260820"
     },
     "CHENNPETRO.NS": {
       "qty": 2,
       "avg_cost": 1440.300048828125,
-      "last_price": 1341.0999755859375,
+      "last_price": 1367.4000244140625,
       "entry_date": "20260820"
     },
     "NATIONALUM.NS": {
       "qty": 5,
       "avg_cost": 386.54998779296875,
-      "last_price": 394.95001220703125,
+      "last_price": 381.5,
       "entry_date": "20260820"
     },
     "NATCOPHARM.NS": {
       "qty": 4,
       "avg_cost": 860.4609,
-      "last_price": 853.7999877929688,
+      "last_price": 841.5,
       "entry_date": "20260820"
     },
     "COLPAL.NS": {
       "qty": 5,
       "avg_cost": 1883.36,
-      "last_price": 1826.9000244140625,
+      "last_price": 1897.5999755859375,
       "entry_date": "20260820"
     },
     "ITC.NS": {
       "qty": 121,
       "avg_cost": 268.3661,
-      "last_price": 266.0,
+      "last_price": 255.5,
       "entry_date": "20260820"
     },
     "CIEINDIA.NS": {
-      "qty": 23,
+      "qty": 0,
       "avg_cost": 403.7283,
-      "last_price": 389.95001220703125,
+      "last_price": 391.04998779296875,
       "entry_date": "20260820"
     },
     "PETRONET.NS": {
-      "qty": 15,
+      "qty": 0,
       "avg_cost": 292.0,
-      "last_price": 292.0,
+      "last_price": 300.6000061035156,
       "entry_date": "20260901"
     }
   },
@@ -525,6 +525,62 @@
       },
       "total_cost": 11.09,
       "cash_after": 193.87
+    },
+    {
+      "date": "20260901",
+      "ticker": "CIEINDIA.NS",
+      "action": "SELL",
+      "qty": 23,
+      "price": 391.04998779296875,
+      "value": 8994.149719238281,
+      "cost_breakdown": {
+        "brokerage": 8.994149719238282,
+        "stt": 8.994149719238282,
+        "exchange_tc": 0.26712624666137696,
+        "sebi_charge": 0.0008994149719238281,
+        "dp_charge": 20.0,
+        "gst": 5.267191568556885
+      },
+      "total_cost": 43.52,
+      "realised_pnl": -335.12,
+      "cash_after": 9144.5
+    },
+    {
+      "date": "20260901",
+      "ticker": "PETRONET.NS",
+      "action": "SELL",
+      "qty": 15,
+      "price": 300.6000061035156,
+      "value": 4509.000091552734,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 4.509000091552735,
+        "exchange_tc": 0.1339173027191162,
+        "sebi_charge": 0.0004509000091552734,
+        "dp_charge": 20.0,
+        "gst": 4.524186276491089
+      },
+      "total_cost": 34.17,
+      "realised_pnl": 94.83,
+      "cash_after": 13619.33
+    },
+    {
+      "date": "20260901",
+      "ticker": "LUPIN.NS",
+      "action": "BUY",
+      "qty": 3,
+      "price": 2188.39990234375,
+      "value": 6565.19970703125,
+      "cost_breakdown": {
+        "brokerage": 6.56519970703125,
+        "stt": 6.56519970703125,
+        "exchange_tc": 0.19498643129882812,
+        "sebi_charge": 0.0006565199707031249,
+        "stamp_duty": 0.9847799560546874,
+        "gst": 1.2169516784941405
+      },
+      "total_cost": 15.53,
+      "cash_after": 7038.6
     }
   ],
   "daily_nav": {
@@ -534,7 +590,7 @@
     "20260825": 99533.19,
     "20260826": 99421.89,
     "20260828": 99060.49,
-    "20260901": 97986.37
+    "20260901": 97210.5
   },
   "last_updated": "20260901"
 }
