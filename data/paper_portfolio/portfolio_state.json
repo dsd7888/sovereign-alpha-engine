@@ -1,58 +1,58 @@
 {
   "initial_capital": 100000.0,
-  "cash": 180.96041663569395,
+  "cash": 564.239379150672,
   "peak_value": 100068.63191213323,
   "holdings": {
     "LUPIN.NS": {
-      "qty": 4,
-      "avg_cost": 2208.16,
-      "last_price": 2105.0,
+      "qty": 5,
+      "avg_cost": 2187.468,
+      "last_price": 2104.699951171875,
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
       "qty": 22,
       "avg_cost": 402.6,
-      "last_price": 418.8500061035156,
+      "last_price": 420.25,
       "entry_date": "20260820"
     },
     "HEROMOTOCO.NS": {
       "qty": 1,
       "avg_cost": 5709.5,
-      "last_price": 5270.0,
+      "last_price": 5333.5,
       "entry_date": "20260820"
     },
     "INDUSTOWER.NS": {
       "qty": 20,
       "avg_cost": 374.41,
-      "last_price": 376.45001220703125,
+      "last_price": 373.04998779296875,
       "entry_date": "20260820"
     },
     "CHENNPETRO.NS": {
       "qty": 2,
       "avg_cost": 1440.300048828125,
-      "last_price": 1430.199951171875,
+      "last_price": 1457.800048828125,
       "entry_date": "20260820"
     },
     "NATIONALUM.NS": {
       "qty": 5,
       "avg_cost": 386.54998779296875,
-      "last_price": 365.8999938964844,
+      "last_price": 371.04998779296875,
       "entry_date": "20260820"
     },
     "NATCOPHARM.NS": {
-      "qty": 7,
-      "avg_cost": 855.6348,
-      "last_price": 828.6500244140625,
+      "qty": 11,
+      "avg_cost": 844.7676,
+      "last_price": 825.75,
       "entry_date": "20260820"
     },
     "COLPAL.NS": {
-      "qty": 5,
-      "avg_cost": 1883.36,
-      "last_price": 1813.5,
+      "qty": 8,
+      "avg_cost": 1859.5625,
+      "last_price": 1819.9000244140625,
       "entry_date": "20260820"
     },
     "ITC.NS": {
-      "qty": 138,
+      "qty": 95,
       "avg_cost": 268.1485,
       "last_price": 263.5,
       "entry_date": "20260820"
@@ -60,13 +60,13 @@
     "CIEINDIA.NS": {
       "qty": 20,
       "avg_cost": 390.8500061035156,
-      "last_price": 385.3500061035156,
+      "last_price": 383.3999938964844,
       "entry_date": "20260902"
     },
     "PETRONET.NS": {
       "qty": 9,
       "avg_cost": 292.29998779296875,
-      "last_price": 288.1000061035156,
+      "last_price": 285.79998779296875,
       "entry_date": "20260902"
     }
   },
@@ -672,6 +672,79 @@
       },
       "total_cost": 9.02,
       "cash_after": 180.96
+    },
+    {
+      "date": "20260909",
+      "ticker": "ITC.NS",
+      "action": "SELL",
+      "qty": 43,
+      "price": 263.5,
+      "value": 11330.5,
+      "cost_breakdown": {
+        "brokerage": 11.3305,
+        "stt": 11.3305,
+        "exchange_tc": 0.33651585,
+        "sebi_charge": 0.00113305,
+        "dp_charge": 20.0,
+        "gst": 5.700266802
+      },
+      "total_cost": 48.7,
+      "realised_pnl": -248.58,
+      "cash_after": 11462.76
+    },
+    {
+      "date": "20260909",
+      "ticker": "LUPIN.NS",
+      "action": "BUY",
+      "qty": 1,
+      "price": 2104.699951171875,
+      "value": 2104.699951171875,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 2.104699951171875,
+        "exchange_tc": 0.06250958854980469,
+        "sebi_charge": 0.00021046999511718748,
+        "stamp_duty": 0.3157049926757812,
+        "gst": 0.911289610538086
+      },
+      "total_cost": 8.39,
+      "cash_after": 9349.67
+    },
+    {
+      "date": "20260909",
+      "ticker": "NATCOPHARM.NS",
+      "action": "BUY",
+      "qty": 4,
+      "price": 825.75,
+      "value": 3303.0,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 3.303,
+        "exchange_tc": 0.0980991,
+        "sebi_charge": 0.0003303,
+        "stamp_duty": 0.49544999999999995,
+        "gst": 0.9177172919999999
+      },
+      "total_cost": 9.81,
+      "cash_after": 6036.85
+    },
+    {
+      "date": "20260909",
+      "ticker": "COLPAL.NS",
+      "action": "BUY",
+      "qty": 3,
+      "price": 1819.9000244140625,
+      "value": 5459.7000732421875,
+      "cost_breakdown": {
+        "brokerage": 5.459700073242187,
+        "stt": 5.459700073242187,
+        "exchange_tc": 0.16215309217529297,
+        "sebi_charge": 0.0005459700073242187,
+        "stamp_duty": 0.8189550109863281,
+        "gst": 1.0120318443764647
+      },
+      "total_cost": 12.91,
+      "cash_after": 564.24
     }
   ],
   "daily_nav": {
@@ -686,7 +759,8 @@
     "20260903": 97814.91,
     "20260904": 97088.66,
     "20260907": 97061.81,
-    "20260908": 96835.51
+    "20260908": 96835.51,
+    "20260909": 96813.74
   },
-  "last_updated": "20260908"
+  "last_updated": "20260909"
 }
