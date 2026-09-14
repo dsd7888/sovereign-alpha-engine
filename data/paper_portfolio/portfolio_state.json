@@ -1,72 +1,72 @@
 {
   "initial_capital": 100000.0,
-  "cash": 1472.1020805296648,
+  "cash": 104.5186102870851,
   "peak_value": 100068.63191213323,
   "holdings": {
     "LUPIN.NS": {
-      "qty": 3,
-      "avg_cost": 2162.4771,
-      "last_price": 2077.800048828125,
+      "qty": 7,
+      "avg_cost": 2123.9188,
+      "last_price": 2095.0,
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
       "qty": 11,
       "avg_cost": 402.6,
-      "last_price": 432.0,
+      "last_price": 426.3999938964844,
       "entry_date": "20260820"
     },
     "HEROMOTOCO.NS": {
       "qty": 1,
       "avg_cost": 5709.5,
-      "last_price": 5280.0,
+      "last_price": 5221.5,
       "entry_date": "20260820"
     },
     "INDUSTOWER.NS": {
       "qty": 10,
       "avg_cost": 372.482,
-      "last_price": 372.0,
+      "last_price": 388.0,
       "entry_date": "20260820"
     },
     "CHENNPETRO.NS": {
       "qty": 2,
       "avg_cost": 1440.300048828125,
-      "last_price": 1626.4000244140625,
+      "last_price": 1572.9000244140625,
       "entry_date": "20260820"
     },
     "NATIONALUM.NS": {
       "qty": 5,
       "avg_cost": 386.54998779296875,
-      "last_price": 373.3500061035156,
+      "last_price": 361.0,
       "entry_date": "20260820"
     },
     "NATCOPHARM.NS": {
-      "qty": 11,
+      "qty": 2,
       "avg_cost": 844.7676,
-      "last_price": 818.6500244140625,
+      "last_price": 815.3499755859375,
       "entry_date": "20260820"
     },
     "COLPAL.NS": {
       "qty": 5,
       "avg_cost": 1859.5625,
-      "last_price": 1808.5,
+      "last_price": 1797.4000244140625,
       "entry_date": "20260820"
     },
     "ITC.NS": {
-      "qty": 140,
-      "avg_cost": 265.6151,
-      "last_price": 259.29998779296875,
+      "qty": 141,
+      "avg_cost": 265.5742,
+      "last_price": 259.8500061035156,
       "entry_date": "20260820"
     },
     "CIEINDIA.NS": {
       "qty": 20,
       "avg_cost": 390.8500061035156,
-      "last_price": 381.79998779296875,
+      "last_price": 379.6499938964844,
       "entry_date": "20260902"
     },
     "PETRONET.NS": {
       "qty": 27,
       "avg_cost": 289.9,
-      "last_price": 288.70001220703125,
+      "last_price": 287.20001220703125,
       "entry_date": "20260902"
     }
   },
@@ -911,6 +911,61 @@
       },
       "total_cost": 12.29,
       "cash_after": 1472.1
+    },
+    {
+      "date": "20260915",
+      "ticker": "NATCOPHARM.NS",
+      "action": "SELL",
+      "qty": 9,
+      "price": 815.3499755859375,
+      "value": 7338.1497802734375,
+      "cost_breakdown": {
+        "brokerage": 7.3381497802734375,
+        "stt": 7.3381497802734375,
+        "exchange_tc": 0.2179430484741211,
+        "sebi_charge": 0.0007338149780273437,
+        "dp_charge": 20.0,
+        "gst": 4.960228795870605
+      },
+      "total_cost": 39.86,
+      "realised_pnl": -304.61,
+      "cash_after": 8770.4
+    },
+    {
+      "date": "20260915",
+      "ticker": "LUPIN.NS",
+      "action": "BUY",
+      "qty": 4,
+      "price": 2095.0,
+      "value": 8380.0,
+      "cost_breakdown": {
+        "brokerage": 8.38,
+        "stt": 8.38,
+        "exchange_tc": 0.248886,
+        "sebi_charge": 0.000838,
+        "stamp_duty": 1.257,
+        "gst": 1.5533503200000003
+      },
+      "total_cost": 19.82,
+      "cash_after": 370.58
+    },
+    {
+      "date": "20260915",
+      "ticker": "ITC.NS",
+      "action": "BUY",
+      "qty": 1,
+      "price": 259.8500061035156,
+      "value": 259.8500061035156,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 0.2598500061035156,
+        "exchange_tc": 0.007717545181274414,
+        "sebi_charge": 2.598500061035156e-05,
+        "stamp_duty": 0.03897750091552734,
+        "gst": 0.9013938354327393
+      },
+      "total_cost": 6.21,
+      "cash_after": 104.52
     }
   ],
   "daily_nav": {
@@ -928,7 +983,8 @@
     "20260908": 96835.51,
     "20260909": 96813.74,
     "20260910": 96704.76,
-    "20260911": 96357.6
+    "20260911": 96357.6,
+    "20260915": 96116.17
   },
-  "last_updated": "20260911"
+  "last_updated": "20260915"
 }
