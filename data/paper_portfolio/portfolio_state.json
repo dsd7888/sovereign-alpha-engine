@@ -1,6 +1,6 @@
 {
   "initial_capital": 100000.0,
-  "cash": 104.5186102870851,
+  "cash": 1613.0970826790344,
   "peak_value": 100068.63191213323,
   "holdings": {
     "LUPIN.NS": {
@@ -10,8 +10,8 @@
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
-      "qty": 11,
-      "avg_cost": 402.6,
+      "qty": 16,
+      "avg_cost": 410.0375,
       "last_price": 426.3999938964844,
       "entry_date": "20260820"
     },
@@ -40,19 +40,19 @@
       "entry_date": "20260820"
     },
     "NATCOPHARM.NS": {
-      "qty": 2,
-      "avg_cost": 844.7676,
+      "qty": 11,
+      "avg_cost": 820.6986,
       "last_price": 815.3499755859375,
       "entry_date": "20260820"
     },
     "COLPAL.NS": {
-      "qty": 5,
-      "avg_cost": 1859.5625,
+      "qty": 9,
+      "avg_cost": 1831.9347,
       "last_price": 1797.4000244140625,
       "entry_date": "20260820"
     },
     "ITC.NS": {
-      "qty": 141,
+      "qty": 96,
       "avg_cost": 265.5742,
       "last_price": 259.8500061035156,
       "entry_date": "20260820"
@@ -64,7 +64,7 @@
       "entry_date": "20260902"
     },
     "PETRONET.NS": {
-      "qty": 27,
+      "qty": 4,
       "avg_cost": 289.9,
       "last_price": 287.20001220703125,
       "entry_date": "20260902"
@@ -966,6 +966,98 @@
       },
       "total_cost": 6.21,
       "cash_after": 104.52
+    },
+    {
+      "date": "20260915",
+      "ticker": "ITC.NS",
+      "action": "SELL",
+      "qty": 45,
+      "price": 259.8500061035156,
+      "value": 11693.250274658203,
+      "cost_breakdown": {
+        "brokerage": 11.693250274658203,
+        "stt": 11.693250274658203,
+        "exchange_tc": 0.3472895331573486,
+        "sebi_charge": 0.0011693250274658203,
+        "dp_charge": 20.0,
+        "gst": 5.767507643911743
+      },
+      "total_cost": 49.5,
+      "realised_pnl": -307.09,
+      "cash_after": 11748.27
+    },
+    {
+      "date": "20260915",
+      "ticker": "PETRONET.NS",
+      "action": "SELL",
+      "qty": 23,
+      "price": 287.20001220703125,
+      "value": 6605.600280761719,
+      "cost_breakdown": {
+        "brokerage": 6.605600280761719,
+        "stt": 6.605600280761719,
+        "exchange_tc": 0.19618632833862304,
+        "sebi_charge": 0.0006605600280761718,
+        "dp_charge": 20.0,
+        "gst": 4.824440490443115
+      },
+      "total_cost": 38.23,
+      "realised_pnl": -100.33,
+      "cash_after": 18315.63
+    },
+    {
+      "date": "20260915",
+      "ticker": "COALINDIA.NS",
+      "action": "BUY",
+      "qty": 5,
+      "price": 426.3999938964844,
+      "value": 2131.999969482422,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 2.131999969482422,
+        "exchange_tc": 0.06332039909362792,
+        "sebi_charge": 0.00021319999694824218,
+        "stamp_duty": 0.31979999542236326,
+        "gst": 0.9114360478363036
+      },
+      "total_cost": 8.43,
+      "cash_after": 16175.21
+    },
+    {
+      "date": "20260915",
+      "ticker": "NATCOPHARM.NS",
+      "action": "BUY",
+      "qty": 9,
+      "price": 815.3499755859375,
+      "value": 7338.1497802734375,
+      "cost_breakdown": {
+        "brokerage": 7.3381497802734375,
+        "stt": 7.3381497802734375,
+        "exchange_tc": 0.2179430484741211,
+        "sebi_charge": 0.0007338149780273437,
+        "stamp_duty": 1.1007224670410156,
+        "gst": 1.3602287958706054
+      },
+      "total_cost": 17.36,
+      "cash_after": 8819.7
+    },
+    {
+      "date": "20260915",
+      "ticker": "COLPAL.NS",
+      "action": "BUY",
+      "qty": 4,
+      "price": 1797.4000244140625,
+      "value": 7189.60009765625,
+      "cost_breakdown": {
+        "brokerage": 7.18960009765625,
+        "stt": 7.18960009765625,
+        "exchange_tc": 0.2135311229003906,
+        "sebi_charge": 0.000718960009765625,
+        "stamp_duty": 1.0784400146484374,
+        "gst": 1.332693032501953
+      },
+      "total_cost": 17.0,
+      "cash_after": 1613.1
     }
   ],
   "daily_nav": {
@@ -984,7 +1076,7 @@
     "20260909": 96813.74,
     "20260910": 96704.76,
     "20260911": 96357.6,
-    "20260915": 96116.17
+    "20260915": 95985.65
   },
   "last_updated": "20260915"
 }
