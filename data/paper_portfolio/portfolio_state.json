@@ -6,19 +6,19 @@
     "LUPIN.NS": {
       "qty": 9,
       "avg_cost": 2110.4257,
-      "last_price": 2045.0,
+      "last_price": 2098.10009765625,
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
       "qty": 1,
       "avg_cost": 410.0375,
-      "last_price": 422.25,
+      "last_price": 418.0,
       "entry_date": "20260820"
     },
     "HEROMOTOCO.NS": {
       "qty": 2,
       "avg_cost": 5472.25,
-      "last_price": 5235.0,
+      "last_price": 5325.0,
       "entry_date": "20260820"
     },
     "INDUSTOWER.NS": {
@@ -30,13 +30,13 @@
     "CHENNPETRO.NS": {
       "qty": 2,
       "avg_cost": 1440.300048828125,
-      "last_price": 1456.0,
+      "last_price": 1414.0999755859375,
       "entry_date": "20260820"
     },
     "NATIONALUM.NS": {
       "qty": 5,
       "avg_cost": 386.54998779296875,
-      "last_price": 356.0,
+      "last_price": 355.70001220703125,
       "entry_date": "20260820"
     },
     "NATCOPHARM.NS": {
@@ -54,7 +54,7 @@
     "ITC.NS": {
       "qty": 128,
       "avg_cost": 264.7857,
-      "last_price": 264.1499938964844,
+      "last_price": 266.20001220703125,
       "entry_date": "20260820"
     },
     "CIEINDIA.NS": {
@@ -66,7 +66,7 @@
     "PETRONET.NS": {
       "qty": 4,
       "avg_cost": 289.9,
-      "last_price": 282.1000061035156,
+      "last_price": 283.45001220703125,
       "entry_date": "20260902"
     },
     "ZFCVINDIA.NS": {
@@ -1304,7 +1304,8 @@
     "20260911": 96357.6,
     "20260915": 95985.65,
     "20260916": 95144.46,
-    "20260917": 95738.63
+    "20260917": 95738.63,
+    "20260918": 96574.79
   },
-  "last_updated": "20260917"
+  "last_updated": "20260918"
 }
