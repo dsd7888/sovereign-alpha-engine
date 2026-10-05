@@ -1,17 +1,17 @@
 {
   "initial_capital": 100000.0,
-  "cash": 24201.684434542036,
+  "cash": 19966.263295352826,
   "peak_value": 100068.63191213323,
   "holdings": {
     "LUPIN.NS": {
-      "qty": 7,
-      "avg_cost": 2088.8154,
+      "qty": 9,
+      "avg_cost": 2076.012,
       "last_price": 2031.199951171875,
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
-      "qty": 11,
-      "avg_cost": 420.3879,
+      "qty": 28,
+      "avg_cost": 420.3952,
       "last_price": 420.3999938964844,
       "entry_date": "20260820"
     },
@@ -40,7 +40,7 @@
       "entry_date": "20260820"
     },
     "NATCOPHARM.NS": {
-      "qty": 9,
+      "qty": 3,
       "avg_cost": 820.7332,
       "last_price": 821.2999877929688,
       "entry_date": "20260820"
@@ -70,7 +70,7 @@
       "entry_date": "20260902"
     },
     "ZFCVINDIA.NS": {
-      "qty": 5,
+      "qty": 3,
       "avg_cost": 2451.64,
       "last_price": 2241.0,
       "entry_date": "20260916"
@@ -88,8 +88,8 @@
       "entry_date": "20261002"
     },
     "GLENMARK.NS": {
-      "qty": 2,
-      "avg_cost": 2334.699951171875,
+      "qty": 3,
+      "avg_cost": 2333.4666,
       "last_price": 2331.0,
       "entry_date": "20261002"
     }
@@ -1855,6 +1855,98 @@
       },
       "total_cost": 9.06,
       "cash_after": 24201.68
+    },
+    {
+      "date": "20261006",
+      "ticker": "NATCOPHARM.NS",
+      "action": "SELL",
+      "qty": 6,
+      "price": 821.2999877929688,
+      "value": 4927.7999267578125,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 4.927799926757813,
+        "exchange_tc": 0.14635565782470703,
+        "sebi_charge": 0.0004927799926757812,
+        "dp_charge": 20.0,
+        "gst": 4.526432718807128
+      },
+      "total_cost": 34.6,
+      "realised_pnl": -31.2,
+      "cash_after": 29094.88
+    },
+    {
+      "date": "20261006",
+      "ticker": "ZFCVINDIA.NS",
+      "action": "SELL",
+      "qty": 2,
+      "price": 2241.0,
+      "value": 4482.0,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 4.482,
+        "exchange_tc": 0.1331154,
+        "sebi_charge": 0.0004482,
+        "dp_charge": 20.0,
+        "gst": 4.524041448
+      },
+      "total_cost": 34.14,
+      "realised_pnl": -455.42,
+      "cash_after": 33542.74
+    },
+    {
+      "date": "20261006",
+      "ticker": "COALINDIA.NS",
+      "action": "BUY",
+      "qty": 17,
+      "price": 420.3999938964844,
+      "value": 7146.799896240234,
+      "cost_breakdown": {
+        "brokerage": 7.146799896240235,
+        "stt": 7.146799896240235,
+        "exchange_tc": 0.21225995691833496,
+        "sebi_charge": 0.0007146799896240234,
+        "stamp_duty": 1.072019984436035,
+        "gst": 1.324759415966675
+      },
+      "total_cost": 16.9,
+      "cash_after": 26379.04
+    },
+    {
+      "date": "20261006",
+      "ticker": "LUPIN.NS",
+      "action": "BUY",
+      "qty": 2,
+      "price": 2031.199951171875,
+      "value": 4062.39990234375,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 4.06239990234375,
+        "exchange_tc": 0.12065327709960938,
+        "sebi_charge": 0.000406239990234375,
+        "stamp_duty": 0.6093599853515624,
+        "gst": 0.921790713076172
+      },
+      "total_cost": 10.71,
+      "cash_after": 22305.93
+    },
+    {
+      "date": "20261006",
+      "ticker": "GLENMARK.NS",
+      "action": "BUY",
+      "qty": 1,
+      "price": 2331.0,
+      "value": 2331.0,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 2.331,
+        "exchange_tc": 0.0692307,
+        "sebi_charge": 0.0002331,
+        "stamp_duty": 0.34964999999999996,
+        "gst": 0.912503484
+      },
+      "total_cost": 8.66,
+      "cash_after": 19966.26
     }
   ],
   "daily_nav": {
@@ -1883,7 +1975,8 @@
     "20260925": 96561.41,
     "20260929": 95946.62,
     "20260930": 95426.43,
-    "20261002": 93370.13
+    "20261002": 93370.13,
+    "20261006": 93265.11
   },
-  "last_updated": "20261002"
+  "last_updated": "20261006"
 }
