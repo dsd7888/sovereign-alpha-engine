@@ -1,30 +1,30 @@
 {
   "initial_capital": 100000.0,
-  "cash": 19966.263295352826,
+  "cash": 24617.172368011674,
   "peak_value": 100068.63191213323,
   "holdings": {
     "LUPIN.NS": {
       "qty": 9,
       "avg_cost": 2076.012,
-      "last_price": 2031.199951171875,
+      "last_price": 2011.0,
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
-      "qty": 28,
+      "qty": 14,
       "avg_cost": 420.3952,
-      "last_price": 420.3999938964844,
+      "last_price": 425.1000061035156,
       "entry_date": "20260820"
     },
     "HEROMOTOCO.NS": {
-      "qty": 2,
+      "qty": 1,
       "avg_cost": 5320.125,
-      "last_price": 5168.0,
+      "last_price": 5089.5,
       "entry_date": "20260820"
     },
     "INDUSTOWER.NS": {
       "qty": 7,
       "avg_cost": 374.1152,
-      "last_price": 376.25,
+      "last_price": 380.20001220703125,
       "entry_date": "20260820"
     },
     "CHENNPETRO.NS": {
@@ -36,13 +36,13 @@
     "NATIONALUM.NS": {
       "qty": 4,
       "avg_cost": 357.15,
-      "last_price": 334.8999938964844,
+      "last_price": 340.0,
       "entry_date": "20260820"
     },
     "NATCOPHARM.NS": {
       "qty": 3,
       "avg_cost": 820.7332,
-      "last_price": 821.2999877929688,
+      "last_price": 821.5,
       "entry_date": "20260820"
     },
     "COLPAL.NS": {
@@ -58,27 +58,27 @@
       "entry_date": "20260820"
     },
     "CIEINDIA.NS": {
-      "qty": 0,
-      "avg_cost": 375.79998779296875,
-      "last_price": 390.6000061035156,
-      "entry_date": "20260917"
+      "qty": 14,
+      "avg_cost": 378.0,
+      "last_price": 378.0,
+      "entry_date": "20261007"
     },
     "PETRONET.NS": {
       "qty": 26,
       "avg_cost": 286.2654,
-      "last_price": 285.5,
+      "last_price": 290.0,
       "entry_date": "20260902"
     },
     "ZFCVINDIA.NS": {
-      "qty": 3,
-      "avg_cost": 2451.64,
-      "last_price": 2241.0,
+      "qty": 6,
+      "avg_cost": 2326.47,
+      "last_price": 2201.300048828125,
       "entry_date": "20260916"
     },
     "ESCORTS.NS": {
-      "qty": 2,
+      "qty": 0,
       "avg_cost": 2691.25,
-      "last_price": 2667.300048828125,
+      "last_price": 2820.89990234375,
       "entry_date": "20261002"
     },
     "EICHERMOT.NS": {
@@ -90,7 +90,7 @@
     "GLENMARK.NS": {
       "qty": 3,
       "avg_cost": 2333.4666,
-      "last_price": 2331.0,
+      "last_price": 2295.0,
       "entry_date": "20261002"
     }
   },
@@ -1947,6 +1947,99 @@
       },
       "total_cost": 8.66,
       "cash_after": 19966.26
+    },
+    {
+      "date": "20261007",
+      "ticker": "COALINDIA.NS",
+      "action": "SELL",
+      "qty": 14,
+      "price": 425.1000061035156,
+      "value": 5951.400085449219,
+      "cost_breakdown": {
+        "brokerage": 5.951400085449219,
+        "stt": 5.951400085449219,
+        "exchange_tc": 0.1767565825378418,
+        "sebi_charge": 0.0005951400085449219,
+        "dp_charge": 20.0,
+        "gst": 4.703175325439209
+      },
+      "total_cost": 36.78,
+      "realised_pnl": 29.08,
+      "cash_after": 25880.88
+    },
+    {
+      "date": "20261007",
+      "ticker": "HEROMOTOCO.NS",
+      "action": "SELL",
+      "qty": 1,
+      "price": 5089.5,
+      "value": 5089.5,
+      "cost_breakdown": {
+        "brokerage": 5.0895,
+        "stt": 5.0895,
+        "exchange_tc": 0.15115815,
+        "sebi_charge": 0.00050895,
+        "dp_charge": 20.0,
+        "gst": 4.543410078
+      },
+      "total_cost": 34.87,
+      "realised_pnl": -265.5,
+      "cash_after": 30935.51
+    },
+    {
+      "date": "20261007",
+      "ticker": "ESCORTS.NS",
+      "action": "SELL",
+      "qty": 2,
+      "price": 2820.89990234375,
+      "value": 5641.7998046875,
+      "cost_breakdown": {
+        "brokerage": 5.6417998046875,
+        "stt": 5.6417998046875,
+        "exchange_tc": 0.16756145419921875,
+        "sebi_charge": 0.00056417998046875,
+        "dp_charge": 20.0,
+        "gst": 4.645786578996094
+      },
+      "total_cost": 36.1,
+      "realised_pnl": 223.2,
+      "cash_after": 36541.21
+    },
+    {
+      "date": "20261007",
+      "ticker": "ZFCVINDIA.NS",
+      "action": "BUY",
+      "qty": 3,
+      "price": 2201.300048828125,
+      "value": 6603.900146484375,
+      "cost_breakdown": {
+        "brokerage": 6.603900146484375,
+        "stt": 6.603900146484375,
+        "exchange_tc": 0.19613583435058593,
+        "sebi_charge": 0.0006603900146484375,
+        "stamp_duty": 0.9905850219726562,
+        "gst": 1.2241253467529296
+      },
+      "total_cost": 15.62,
+      "cash_after": 29921.69
+    },
+    {
+      "date": "20261007",
+      "ticker": "CIEINDIA.NS",
+      "action": "BUY",
+      "qty": 14,
+      "price": 378.0,
+      "value": 5292.0,
+      "cost_breakdown": {
+        "brokerage": 5.292,
+        "stt": 5.292,
+        "exchange_tc": 0.1571724,
+        "sebi_charge": 0.0005292,
+        "stamp_duty": 0.7938,
+        "gst": 0.9809462879999999
+      },
+      "total_cost": 12.52,
+      "cash_after": 24617.17
     }
   ],
   "daily_nav": {
@@ -1976,7 +2069,8 @@
     "20260929": 95946.62,
     "20260930": 95426.43,
     "20261002": 93370.13,
-    "20261006": 93265.11
+    "20261006": 93265.11,
+    "20261007": 93167.77
   },
-  "last_updated": "20261006"
+  "last_updated": "20261007"
 }
