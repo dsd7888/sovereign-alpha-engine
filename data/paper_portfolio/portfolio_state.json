@@ -1,30 +1,30 @@
 {
   "initial_capital": 100000.0,
-  "cash": 24617.172368011674,
+  "cash": 1585.1582759401217,
   "peak_value": 100068.63191213323,
   "holdings": {
     "LUPIN.NS": {
-      "qty": 9,
-      "avg_cost": 2076.012,
-      "last_price": 2011.0,
+      "qty": 10,
+      "avg_cost": 2071.3408,
+      "last_price": 2029.300048828125,
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
-      "qty": 14,
-      "avg_cost": 420.3952,
-      "last_price": 425.1000061035156,
+      "qty": 25,
+      "avg_cost": 416.5473,
+      "last_price": 411.6499938964844,
       "entry_date": "20260820"
     },
     "HEROMOTOCO.NS": {
       "qty": 1,
       "avg_cost": 5320.125,
-      "last_price": 5089.5,
+      "last_price": 5075.0,
       "entry_date": "20260820"
     },
     "INDUSTOWER.NS": {
       "qty": 7,
       "avg_cost": 374.1152,
-      "last_price": 380.20001220703125,
+      "last_price": 389.1000061035156,
       "entry_date": "20260820"
     },
     "CHENNPETRO.NS": {
@@ -36,13 +36,13 @@
     "NATIONALUM.NS": {
       "qty": 4,
       "avg_cost": 357.15,
-      "last_price": 340.0,
+      "last_price": 337.25,
       "entry_date": "20260820"
     },
     "NATCOPHARM.NS": {
       "qty": 3,
       "avg_cost": 820.7332,
-      "last_price": 821.5,
+      "last_price": 823.6500244140625,
       "entry_date": "20260820"
     },
     "COLPAL.NS": {
@@ -60,19 +60,19 @@
     "CIEINDIA.NS": {
       "qty": 14,
       "avg_cost": 378.0,
-      "last_price": 378.0,
+      "last_price": 379.0,
       "entry_date": "20261007"
     },
     "PETRONET.NS": {
       "qty": 26,
       "avg_cost": 286.2654,
-      "last_price": 290.0,
+      "last_price": 297.5,
       "entry_date": "20260902"
     },
     "ZFCVINDIA.NS": {
       "qty": 6,
       "avg_cost": 2326.47,
-      "last_price": 2201.300048828125,
+      "last_price": 2187.39990234375,
       "entry_date": "20260916"
     },
     "ESCORTS.NS": {
@@ -82,15 +82,15 @@
       "entry_date": "20261002"
     },
     "EICHERMOT.NS": {
-      "qty": 0,
-      "avg_cost": 7150.0,
-      "last_price": 6920.0,
-      "entry_date": "20261002"
+      "qty": 2,
+      "avg_cost": 7051.0,
+      "last_price": 7051.0,
+      "entry_date": "20261008"
     },
     "GLENMARK.NS": {
-      "qty": 3,
-      "avg_cost": 2333.4666,
-      "last_price": 2295.0,
+      "qty": 4,
+      "avg_cost": 2327.85,
+      "last_price": 2311.0,
       "entry_date": "20261002"
     }
   },
@@ -2040,6 +2040,78 @@
       },
       "total_cost": 12.52,
       "cash_after": 24617.17
+    },
+    {
+      "date": "20261008",
+      "ticker": "COALINDIA.NS",
+      "action": "BUY",
+      "qty": 11,
+      "price": 411.6499938964844,
+      "value": 4528.149932861328,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 4.528149932861329,
+        "exchange_tc": 0.13448605300598146,
+        "sebi_charge": 0.00045281499328613277,
+        "stamp_duty": 0.6792224899291992,
+        "gst": 0.9242889962398682
+      },
+      "total_cost": 11.27,
+      "cash_after": 20077.76
+    },
+    {
+      "date": "20261008",
+      "ticker": "LUPIN.NS",
+      "action": "BUY",
+      "qty": 1,
+      "price": 2029.300048828125,
+      "value": 2029.300048828125,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 2.029300048828125,
+        "exchange_tc": 0.060270211450195316,
+        "sebi_charge": 0.00020293000488281248,
+        "stamp_duty": 0.3043950073242187,
+        "gst": 0.910885165461914
+      },
+      "total_cost": 8.31,
+      "cash_after": 18040.15
+    },
+    {
+      "date": "20261008",
+      "ticker": "EICHERMOT.NS",
+      "action": "BUY",
+      "qty": 2,
+      "price": 7051.0,
+      "value": 14102.0,
+      "cost_breakdown": {
+        "brokerage": 14.102,
+        "stt": 14.102,
+        "exchange_tc": 0.4188294,
+        "sebi_charge": 0.0014102,
+        "stamp_duty": 2.1153,
+        "gst": 2.6140031280000002
+      },
+      "total_cost": 33.35,
+      "cash_after": 3904.8
+    },
+    {
+      "date": "20261008",
+      "ticker": "GLENMARK.NS",
+      "action": "BUY",
+      "qty": 1,
+      "price": 2311.0,
+      "value": 2311.0,
+      "cost_breakdown": {
+        "brokerage": 5.0,
+        "stt": 2.311,
+        "exchange_tc": 0.0686367,
+        "sebi_charge": 0.00023109999999999998,
+        "stamp_duty": 0.34664999999999996,
+        "gst": 0.9123962039999999
+      },
+      "total_cost": 8.64,
+      "cash_after": 1585.16
     }
   ],
   "daily_nav": {
@@ -2070,7 +2142,8 @@
     "20260930": 95426.43,
     "20261002": 93370.13,
     "20261006": 93265.11,
-    "20261007": 93167.77
+    "20261007": 93167.77,
+    "20261008": 93299.46
   },
-  "last_updated": "20261007"
+  "last_updated": "20261008"
 }
