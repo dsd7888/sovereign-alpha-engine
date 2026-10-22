@@ -6,25 +6,25 @@
     "LUPIN.NS": {
       "qty": 1,
       "avg_cost": 2071.3408,
-      "last_price": 1939.199951171875,
+      "last_price": 1964.0,
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
       "qty": 1,
       "avg_cost": 416.2649,
-      "last_price": 411.70001220703125,
+      "last_price": 407.5,
       "entry_date": "20260820"
     },
     "HEROMOTOCO.NS": {
       "qty": 1,
       "avg_cost": 5320.125,
-      "last_price": 5230.0,
+      "last_price": 5153.5,
       "entry_date": "20260820"
     },
     "INDUSTOWER.NS": {
       "qty": 1,
       "avg_cost": 381.2228,
-      "last_price": 382.3999938964844,
+      "last_price": 379.0,
       "entry_date": "20260820"
     },
     "CHENNPETRO.NS": {
@@ -36,13 +36,13 @@
     "NATIONALUM.NS": {
       "qty": 1,
       "avg_cost": 357.15,
-      "last_price": 318.0,
+      "last_price": 312.20001220703125,
       "entry_date": "20260820"
     },
     "NATCOPHARM.NS": {
       "qty": 1,
       "avg_cost": 820.7332,
-      "last_price": 800.8499755859375,
+      "last_price": 784.4500122070312,
       "entry_date": "20260820"
     },
     "COLPAL.NS": {
@@ -66,13 +66,13 @@
     "PETRONET.NS": {
       "qty": 1,
       "avg_cost": 286.2654,
-      "last_price": 293.6499938964844,
+      "last_price": 295.0,
       "entry_date": "20260902"
     },
     "ZFCVINDIA.NS": {
       "qty": 1,
       "avg_cost": 2326.47,
-      "last_price": 2140.800048828125,
+      "last_price": 2096.300048828125,
       "entry_date": "20260916"
     },
     "ESCORTS.NS": {
@@ -84,19 +84,19 @@
     "EICHERMOT.NS": {
       "qty": 1,
       "avg_cost": 7051.0,
-      "last_price": 7349.0,
+      "last_price": 7170.5,
       "entry_date": "20261008"
     },
     "GLENMARK.NS": {
       "qty": 1,
       "avg_cost": 2327.85,
-      "last_price": 2210.199951171875,
+      "last_price": 2194.10009765625,
       "entry_date": "20261002"
     },
     "APLAPOLLO.NS": {
       "qty": 1,
       "avg_cost": 2135.0,
-      "last_price": 2144.60009765625,
+      "last_price": 2066.800048828125,
       "entry_date": "20261009"
     }
   },
@@ -2781,7 +2781,8 @@
     "20261015": 89882.08,
     "20261016": 90217.78,
     "20261020": 90275.73,
-    "20261021": 90275.73
+    "20261021": 90275.73,
+    "20261022": 89878.68
   },
-  "last_updated": "20261021"
+  "last_updated": "20261022"
 }
