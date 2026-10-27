@@ -6,25 +6,25 @@
     "LUPIN.NS": {
       "qty": 1,
       "avg_cost": 2071.3408,
-      "last_price": 1928.9000244140625,
+      "last_price": 1959.9000244140625,
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
       "qty": 1,
       "avg_cost": 416.2649,
-      "last_price": 397.45001220703125,
+      "last_price": 405.0,
       "entry_date": "20260820"
     },
     "HEROMOTOCO.NS": {
       "qty": 1,
       "avg_cost": 5320.125,
-      "last_price": 5047.0,
+      "last_price": 5199.0,
       "entry_date": "20260820"
     },
     "INDUSTOWER.NS": {
       "qty": 1,
       "avg_cost": 381.2228,
-      "last_price": 380.0,
+      "last_price": 389.0,
       "entry_date": "20260820"
     },
     "CHENNPETRO.NS": {
@@ -42,7 +42,7 @@
     "NATCOPHARM.NS": {
       "qty": 1,
       "avg_cost": 820.7332,
-      "last_price": 791.8499755859375,
+      "last_price": 790.2000122070312,
       "entry_date": "20260820"
     },
     "COLPAL.NS": {
@@ -66,13 +66,13 @@
     "PETRONET.NS": {
       "qty": 1,
       "avg_cost": 286.2654,
-      "last_price": 286.29998779296875,
+      "last_price": 291.75,
       "entry_date": "20260902"
     },
     "ZFCVINDIA.NS": {
       "qty": 1,
       "avg_cost": 2326.47,
-      "last_price": 2132.699951171875,
+      "last_price": 2143.699951171875,
       "entry_date": "20260916"
     },
     "ESCORTS.NS": {
@@ -84,19 +84,19 @@
     "EICHERMOT.NS": {
       "qty": 1,
       "avg_cost": 7051.0,
-      "last_price": 7066.0,
+      "last_price": 7099.5,
       "entry_date": "20261008"
     },
     "GLENMARK.NS": {
       "qty": 1,
       "avg_cost": 2327.85,
-      "last_price": 2166.60009765625,
+      "last_price": 2225.800048828125,
       "entry_date": "20261002"
     },
     "APLAPOLLO.NS": {
       "qty": 1,
       "avg_cost": 2135.0,
-      "last_price": 2033.699951171875,
+      "last_price": 2077.89990234375,
       "entry_date": "20261009"
     }
   },
@@ -2803,7 +2803,7 @@
     "20261021": 90275.73,
     "20261022": 89878.68,
     "20261023": 89755.58,
-    "20261027": 89557.76
+    "20261027": 89909.01
   },
   "last_updated": "20261027"
 }
