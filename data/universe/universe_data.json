@@ -177,9 +177,9 @@
     "HINDCOPPER.NS",
     "HINDPETRO.NS",
     "HUDCO.NS",
+    "ICICILIFE.NS",
     "ICICIGI.NS",
     "ICICIAMC.NS",
-    "ICICIPRULI.NS",
     "IDFCFIRSTB.NS",
     "ITCHOTELS.NS",
     "INDIANB.NS",
@@ -608,7 +608,7 @@
     "HUDCO.NS",
     "ICICIAMC.NS",
     "ICICIGI.NS",
-    "ICICIPRULI.NS",
+    "ICICILIFE.NS",
     "IDBI.NS",
     "IDFCFIRSTB.NS",
     "IEX.NS",
@@ -953,9 +953,9 @@
     "HINDCOPPER.NS": "Metals & Mining",
     "HINDPETRO.NS": "Oil Gas & Consumable Fuels",
     "HUDCO.NS": "Financial Services",
+    "ICICILIFE.NS": "Financial Services",
     "ICICIGI.NS": "Financial Services",
     "ICICIAMC.NS": "Financial Services",
-    "ICICIPRULI.NS": "Financial Services",
     "IDFCFIRSTB.NS": "Financial Services",
     "ITCHOTELS.NS": "Consumer Services",
     "INDIANB.NS": "Financial Services",
@@ -1129,7 +1129,7 @@
     "ANURAS.NS": "Chemicals",
     "MGL.NS": "Oil Gas & Consumable Fuels",
     "ACE.NS": "Capital Goods",
-    "DUMMYHEG.NS": "Metals & Mining",
+    "DUMMYHEG.NS": "Capital Goods",
     "NATCOPHARM.NS": "Healthcare",
     "FINCABLES.NS": "Capital Goods",
     "VEDPOWER.NS": "Power",
@@ -1169,5 +1169,5 @@
     "ind_niftymidcap150list.csv": "OK (150 rows)",
     "ind_niftysmallcap250list.csv": "OK (251 rows)"
   },
-  "built_at": "2026-10-01T17:03:59.887679"
+  "built_at": "2026-11-01T17:17:36.030498"
 }
