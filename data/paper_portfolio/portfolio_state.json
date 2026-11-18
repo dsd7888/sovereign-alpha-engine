@@ -6,25 +6,25 @@
     "LUPIN.NS": {
       "qty": 1,
       "avg_cost": 2071.3408,
-      "last_price": 1976.699951171875,
+      "last_price": 1950.0,
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
       "qty": 1,
       "avg_cost": 416.2649,
-      "last_price": 397.5,
+      "last_price": 391.54998779296875,
       "entry_date": "20260820"
     },
     "HEROMOTOCO.NS": {
       "qty": 1,
       "avg_cost": 5320.125,
-      "last_price": 5359.5,
+      "last_price": 5329.0,
       "entry_date": "20260820"
     },
     "INDUSTOWER.NS": {
       "qty": 1,
       "avg_cost": 381.2228,
-      "last_price": 396.20001220703125,
+      "last_price": 392.6000061035156,
       "entry_date": "20260820"
     },
     "CHENNPETRO.NS": {
@@ -42,7 +42,7 @@
     "NATCOPHARM.NS": {
       "qty": 1,
       "avg_cost": 820.7332,
-      "last_price": 828.6500244140625,
+      "last_price": 822.9000244140625,
       "entry_date": "20260820"
     },
     "COLPAL.NS": {
@@ -66,13 +66,13 @@
     "PETRONET.NS": {
       "qty": 1,
       "avg_cost": 286.2654,
-      "last_price": 326.0,
+      "last_price": 328.1000061035156,
       "entry_date": "20260902"
     },
     "ZFCVINDIA.NS": {
       "qty": 1,
       "avg_cost": 2326.47,
-      "last_price": 2207.5,
+      "last_price": 2177.699951171875,
       "entry_date": "20260916"
     },
     "ESCORTS.NS": {
@@ -84,19 +84,19 @@
     "EICHERMOT.NS": {
       "qty": 1,
       "avg_cost": 7051.0,
-      "last_price": 7599.0,
+      "last_price": 7828.0,
       "entry_date": "20261008"
     },
     "GLENMARK.NS": {
       "qty": 1,
       "avg_cost": 2327.85,
-      "last_price": 2632.89990234375,
+      "last_price": 2615.800048828125,
       "entry_date": "20261002"
     },
     "APLAPOLLO.NS": {
       "qty": 1,
       "avg_cost": 2135.0,
-      "last_price": 2250.199951171875,
+      "last_price": 2188.5,
       "entry_date": "20261009"
     }
   },
@@ -2815,7 +2815,8 @@
     "20261112": 91475.21,
     "20261113": 91441.61,
     "20261117": 91500.56,
-    "20261118": 91301.41
+    "20261118": 91301.41,
+    "20261119": 91351.41
   },
-  "last_updated": "20261118"
+  "last_updated": "20261119"
 }
