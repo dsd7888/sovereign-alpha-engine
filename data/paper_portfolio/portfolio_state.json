@@ -6,25 +6,25 @@
     "LUPIN.NS": {
       "qty": 1,
       "avg_cost": 2071.3408,
-      "last_price": 1975.5999755859375,
+      "last_price": 2003.800048828125,
       "entry_date": "20260820"
     },
     "COALINDIA.NS": {
       "qty": 1,
       "avg_cost": 416.2649,
-      "last_price": 382.0,
+      "last_price": 385.0,
       "entry_date": "20260820"
     },
     "HEROMOTOCO.NS": {
       "qty": 1,
       "avg_cost": 5320.125,
-      "last_price": 5535.0,
+      "last_price": 5751.5,
       "entry_date": "20260820"
     },
     "INDUSTOWER.NS": {
       "qty": 1,
       "avg_cost": 381.2228,
-      "last_price": 380.25,
+      "last_price": 381.79998779296875,
       "entry_date": "20260820"
     },
     "CHENNPETRO.NS": {
@@ -42,7 +42,7 @@
     "NATCOPHARM.NS": {
       "qty": 1,
       "avg_cost": 820.7332,
-      "last_price": 806.5499877929688,
+      "last_price": 800.8499755859375,
       "entry_date": "20260820"
     },
     "COLPAL.NS": {
@@ -66,13 +66,13 @@
     "PETRONET.NS": {
       "qty": 1,
       "avg_cost": 286.2654,
-      "last_price": 326.04998779296875,
+      "last_price": 327.0,
       "entry_date": "20260902"
     },
     "ZFCVINDIA.NS": {
       "qty": 1,
       "avg_cost": 2326.47,
-      "last_price": 2159.60009765625,
+      "last_price": 2119.800048828125,
       "entry_date": "20260916"
     },
     "ESCORTS.NS": {
@@ -84,13 +84,13 @@
     "EICHERMOT.NS": {
       "qty": 1,
       "avg_cost": 7051.0,
-      "last_price": 8172.5,
+      "last_price": 8336.0,
       "entry_date": "20261008"
     },
     "GLENMARK.NS": {
       "qty": 1,
       "avg_cost": 2327.85,
-      "last_price": 2657.0,
+      "last_price": 2719.0,
       "entry_date": "20261002"
     },
     "APLAPOLLO.NS": {
@@ -2839,7 +2839,8 @@
     "20261120": 91225.61,
     "20261124": 91872.11,
     "20261125": 91360.59,
-    "20261126": 91360.59
+    "20261126": 91360.59,
+    "20261127": 91790.79
   },
-  "last_updated": "20261126"
+  "last_updated": "20261127"
 }
